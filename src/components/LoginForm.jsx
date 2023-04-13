@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
-
+import axios from 'axios';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
         .email('Adresse e-mail invalide')
         .required('L’adresse e-mail est requise'),
     password: Yup.string()
-        .min(6, 'Le mot de passe doit contenir au moins 6 caractères')
         .required('Le mot de passe est requis'),
 });
 
 const LoginForm = () => {
-    const handleSubmit = (values, {setSubmitting}) => {
-        // Traitez les données de formulaire ici
-        console.log(values);
+    const handleSubmit = async (values, { setSubmitting }) => {
+      try {
+        const response = await axios.post(
+          "http://localhost:8081/api/v1/auth/authenticate",
+          values
+        );
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
         setSubmitting(false);
+      }
     };
+
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
