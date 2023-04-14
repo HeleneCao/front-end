@@ -3,7 +3,7 @@ import React from 'react'
 const IncubateurPage = () => {
   return (
     <div>
-      Incubateur
+      <h1>Incubateur</h1>
     </div>
   )
 }

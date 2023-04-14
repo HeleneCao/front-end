@@ -60,7 +60,7 @@ function Navbar() {
         </div>
         
         <div className="flex items-center">
-          <Link to="/">
+          <Link to="/login">
             <img
               src="src\images\Login.png"
               alt="Contact Logo"

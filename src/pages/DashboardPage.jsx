@@ -1,7 +1,11 @@
+import React from 'react'
+
 const DashboardPage = () => {
-    return (
-        <div>
-            Dashbord
-        </div>
-    )
+  return (
+    <div>
+      dashboard
+    </div>
+  )
 }
+
+export default DashboardPage
