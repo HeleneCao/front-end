@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./Searchbar";
+import MenuGestion from "./MenuGestion";
 
 function Navbar() {
   return (
+    <div>
     <nav className="bg-white py-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         
@@ -70,6 +72,8 @@ function Navbar() {
         </div>
       </div>
     </nav>
+    <div><MenuGestion/></div>
+   </div>
   );
 }
 
