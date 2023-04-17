@@ -19,9 +19,9 @@ const MenuGestion = () => {
               className="h-3 w-auto mr-2"
             /></span>
     <ul className="rounded-box bg-base-100 secondary-focus-bg-blue-500 p-2">
-      <li><Link to="gestionstagiaires">Les stagiaire</Link></li>
-      <li><Link to="gestionequipes">Les teams</Link></li>
-      <li><Link to="gestionreponsables">Les responsables</Link></li>
+      <li><Link to="gestionStagiaires">Stagiaire</Link></li>
+      <li><Link to="gestionEquipes">Équipe</Link></li>
+      <li><Link to="gestionResponsables">Responsable</Link></li>
     </ul>
   </li>
 </ul>

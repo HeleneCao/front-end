@@ -38,7 +38,7 @@ const LoginForm = () => {
                     {({isSubmitting}) => (
                         <Form className="mt-8 space-y-6">
                             <div className="rounded-md shadow-sm -space-y-px">
-                                <div>
+                                <div className="relative mb-4">
                                     <label htmlFor="email" className="sr-only">
                                         Adresse e-mail
                                     </label>
@@ -54,7 +54,7 @@ const LoginForm = () => {
                                         {msg => <div className="text-red-600 text-sm">{msg}</div>}
                                     </ErrorMessage>
                                 </div>
-                                <div>
+                                <div className="relative mb-4">
                                     <label htmlFor="password" className="sr-only">
                                         Mot de passe
                                     </label>
