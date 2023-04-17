@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 
 const MenuGestion = () => {
   return (
-    <div>
-      <div>
-      <ul className="menu menu-horizontal bg-base-100 rounded-box p-2">
+    <div className="border border-b-base-700 p-5">
+      <div >
+      <ul className="menu menu-horizontal border bg-base-500 rounded-full">
   <li></li>
   <li tabIndex={0}>
     <span><img
@@ -19,9 +19,9 @@ const MenuGestion = () => {
               className="h-3 w-auto mr-2"
             /></span>
     <ul className="rounded-box bg-base-100 secondary-focus-bg-blue-500 p-2">
-      <li><Link to="gestionstagiaires">Stagiaire</Link></li>
-      <li><a>Équipe</a></li>
-      <li><a>Responsable</a></li>
+      <li><Link to="gestionstagiaires">Les stagiaire</Link></li>
+      <li><Link to="gestionequipes">Les teams</Link></li>
+      <li><Link to="gestionreponsables">Les responsables</Link></li>
     </ul>
   </li>
 </ul>
