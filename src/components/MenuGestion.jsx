@@ -19,7 +19,7 @@ const MenuGestion = () => {
               className="h-3 w-auto mr-2"
             /></span>
     <ul className="rounded-box bg-base-100 secondary-focus-bg-blue-500 p-2">
-      <li><a>Stagiaire</a></li>
+      <li><Link to="gestionstagiaires">Stagiaire</Link></li>
       <li><a>Équipe</a></li>
       <li><a>Responsable</a></li>
     </ul>
