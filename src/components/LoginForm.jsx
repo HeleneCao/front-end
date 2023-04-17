@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import { useNavigate } from "react-router-dom";
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -12,6 +13,9 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
+
+    const navigate = useNavigate();
+
     const handleSubmit = async (values, { setSubmitting }) => {
       try {
         const response = await axios.post(
@@ -19,14 +23,14 @@ const LoginForm = () => {
           values
         );
         console.log(response.data);
+          navigate("/");
+
       } catch (error) {
         console.error(error);
       } finally {
         setSubmitting(false);
       }
     };
-
-
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
