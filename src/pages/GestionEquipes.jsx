@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GestionEquipe = () => {
+const GestionEquipes = () => {
     return (
         <div className="p-28">
             <div className="overflow-x-auto">
@@ -53,4 +53,4 @@ const GestionEquipe = () => {
     );
 };
 
-export default GestionEquipe;
+export default GestionEquipes;
