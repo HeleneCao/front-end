@@ -24,7 +24,9 @@ function App() {
               <Route path="/dashboard" element={<DashboardPage/>} />
               <Route path="/planning" element={<PlanningPage/>} />
               <Route path="/gestionStagiaires" element={<GestionStagiaires/>} />
+              <Route path="/gestionEquipes" element={<GestionEquipes/>} />
               <Route path="/gestionResponsables" element={<GestionResponsables/>}/>
+              
 
 
             </Route>

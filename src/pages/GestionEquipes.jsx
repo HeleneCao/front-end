@@ -1,6 +1,21 @@
-import React from 'react';
+import React, { useState }from 'react';
+import DialogAdd from "./DialogAdd";
+
 
 const GestionEquipes = () => {
+
+    const [showTaskDialog, setShowTaskDialog] = useState(false);
+
+    const confirm = () => {
+        console.log('Confirm');
+        setShowTaskDialog(false);
+    }
+
+    const cancel = () => {
+        setShowTaskDialog(false);
+    }
+
+
     return (
         <div className="p-28">
             <div className="overflow-x-auto">
@@ -26,9 +41,9 @@ const GestionEquipes = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>rien</td>
-                            <td>rien</td>
-                            <td>rien</td>
+                            <td className="border-2 border-b-white border-r-gray-500">Team Java</td>
+                            <td className="border-2 border-b-white border-r-gray-500">React - Java | Jira</td>
+                            <td className="border-2 border-b-white border-r-gray-500">2</td>
                             <td className="text-center">
                                 <button>
                                     <img
@@ -43,13 +58,24 @@ const GestionEquipes = () => {
                 </table>
                 <div className="p-7 grid place-items-end">
                     <button
-                        className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end">
+                        className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end"
+                        onClick={() => {setShowTaskDialog(true)}}>
                         Ajouter une team
                     </button>
                 </div>
+
+                <div>
+                    <div>
+                <DialogAdd show={showTaskDialog}
+                title="Ajouter une team"
+                confirm={confirm}
+                cancel={cancel}
+                description="Nom de la team" />
+                    </div>  
+                </div>
             </div>
         </div>
-
+        
     );
 };
 
