@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import {setToken} from "../service/tokenServices.js";
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -22,7 +23,7 @@ const LoginForm = () => {
           "http://localhost:8081/api/v1/auth/authenticate",
           values
         );
-        console.log(response.data);
+        setToken(response.data.token);
           navigate("/");
 
       } catch (error) {

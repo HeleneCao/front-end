@@ -1,8 +1,17 @@
+import React, {useEffect} from 'react';
+import {teamService} from "../service/team.service.jsx";
 import React, { useState }from 'react';
 import DialogAdd from "./DialogAdd";
 
 
 const GestionEquipes = () => {
+
+    useEffect(() => {
+        teamService.getAllTeams()
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+    },[]);
+
 
     const [showTaskDialog, setShowTaskDialog] = useState(false);
 
