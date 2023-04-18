@@ -1,6 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {teamService} from "../service/team.service.jsx";
 
 const GestionEquipes = () => {
+
+    useEffect(() => {
+        teamService.getAllTeams()
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+    },[]);
+
     return (
         <div className="p-28">
             <div className="overflow-x-auto">
