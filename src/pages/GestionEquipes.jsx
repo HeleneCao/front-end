@@ -56,7 +56,8 @@ const GestionEquipes = () => {
                     {teams.map((team,index) => (
                             <tr key={index}>
                                 <td>{team.name}</td>
-                                <td></td>
+                                <td>{team.skills.map((skill)=>skill.label )}</td>
+                                <td>{team.nbrIntern}</td>
                                 <td className="text-center">
                                     <button>
                                         <img

@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import {setToken} from "../service/tokenServices.js";
+import {getToken, setToken} from "../service/tokenServices.js";
+import apiBackEnd from "../service/api.Backend.js";
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -24,6 +24,7 @@ const LoginForm = () => {
           values
         );
         setToken(response.data.token);
+        console.log(getToken());
           navigate("/");
 
       } catch (error) {
