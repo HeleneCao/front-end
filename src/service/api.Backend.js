@@ -21,7 +21,7 @@ export default apiBackEnd;
  * @author Peter Mollet
  */
 apiBackEnd.interceptors.request.use((request) => {
-    request.headers['Authorization'] = `Bearer ${getToken()}`;
+        request.headers['Authorization'] = `Bearer ${getToken()}`;
     return request;
 });
 

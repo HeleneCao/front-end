@@ -1,14 +1,20 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {teamService} from "../service/team.service.jsx";
+
 
 const GestionEquipes = () => {
 
+    const [teams,setTeams] =useState([]);
+
+
     useEffect(() => {
         teamService.getAllTeams()
-            .then(res => console.log(res.data))
+            .then(res => {
+                setTeams(res.data.content)
+            })
             .catch(err => console.log(err))
     },[]);
-
+    console.log(teams);
     return (
         <div className="p-28">
             <div className="overflow-x-auto">
@@ -33,20 +39,22 @@ const GestionEquipes = () => {
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>rien</td>
-                            <td>rien</td>
-                            <td>rien</td>
-                            <td className="text-center">
-                                <button>
-                                    <img
-                                src="src\images\Vector.png"
-                                alt="Bouton archivé"
-                                className="h-3 w-auto mr-2"
-                                    />
-                                </button>
-                            </td>
-                    </tr>
+                    {teams.map((team,index) => (
+                            <tr key={index}>
+                                <td>{team.name}</td>
+                                <td></td>
+                                <td className="text-center">
+                                    <button>
+                                        <img
+                                            src="src\images\Vector.png"
+                                            alt="Bouton archivé"
+                                            className="h-3 w-auto mr-2"
+                                        />
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    }
                     </tbody>
                 </table>
                 <div className="p-7 grid place-items-end">
