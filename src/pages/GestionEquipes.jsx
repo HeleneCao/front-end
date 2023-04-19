@@ -5,9 +5,14 @@ import ModalTeamAdd from './ModalTeamAdd.jsx';
 
 const GestionEquipes = () => {
 
+    const [teams,setTeams] =useState([]);
+
+
     useEffect(() => {
         teamService.getAllTeams()
-            .then(res => console.log(res.data))
+            .then(res => {
+                setTeams(res.data.content)
+            })
             .catch(err => console.log(err))
     },[]);
 
@@ -15,15 +20,15 @@ const GestionEquipes = () => {
     const [showModalTeamAdd, setShowModalTeam] = useState(false);
 
     const confirm = () => {
-        console.log('Confirm');
+
         setShowModalTeam(false);
     }
 
-    const cancel = () => {
+    const onClose = () => {
         setShowModalTeam(false);
     }
 
-
+   
     return (
         <div className="p-28">
             <div className="overflow-x-auto">
@@ -48,20 +53,22 @@ const GestionEquipes = () => {
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className="border-2 border-b-white border-r-gray-500">Team Java</td>
-                            <td className="border-2 border-b-white border-r-gray-500">React - Java | Jira</td>
-                            <td className="border-2 border-b-white border-r-gray-500">2</td>
-                            <td className="text-center">
-                                <button>
-                                    <img
-                                src="src\images\Vector.png"
-                                alt="Bouton archivé"
-                                className="h-3 w-auto mr-2"
-                                    />
-                                </button>
-                            </td>
-                    </tr>
+                    {teams.map((team,index) => (
+                            <tr key={index}>
+                                <td>{team.name}</td>
+                                <td></td>
+                                <td className="text-center">
+                                    <button>
+                                        <img
+                                            src="src\images\Vector.png"
+                                            alt="Bouton archivé"
+                                            className="h-3 w-auto mr-2"
+                                        />
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    }
                     </tbody>
                 </table>
                 <div className="p-7 grid place-items-end">
@@ -76,7 +83,7 @@ const GestionEquipes = () => {
                     <div>
                 <ModalTeamAdd isOpen={showModalTeamAdd}
                 confirm={confirm}
-                cancel={cancel}
+                onClose={onClose}
                  />
                     </div>  
                 </div>

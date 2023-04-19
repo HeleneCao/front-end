@@ -5,31 +5,17 @@ import {getToken} from "./tokenServices.js";
 import handleHttpError from "../components/error/HandleHttpError.jsx";
 
 
-/**
- * Instance axios to the BACKEND
- *
- * @author Peter Mollet
- */
 const apiBackEnd = axios.create({
     baseURL: "http://localhost:8081",
 });
 export default apiBackEnd;
 
-/**
- * Interceptor of request to automatically put the JWTToken in the header
- *
- * @author Peter Mollet
- */
 apiBackEnd.interceptors.request.use((request) => {
     request.headers['Authorization'] = `Bearer ${getToken()}`;
     return request;
 });
 
-/**
- * Interceptor of response, to see status code in the console and to handle the error
- *
- * @author Peter Mollet
- */
+
 apiBackEnd.interceptors.response.use(
     (response) => {
         console.log(response.status);

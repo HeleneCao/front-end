@@ -7,7 +7,6 @@ const TOKEN_NAME = 'token';
  * Save in the local storage
  *
  * @param {string} token: to save
- * @author Peter Mollet
  */
 export function setToken(token) {
     localStorage.setItem(TOKEN_NAME, token);
@@ -17,7 +16,6 @@ export function setToken(token) {
  * To get the JWT token back-kend saved in the localstorage
  *
  * @return {string} token
- * @author Peter Mollet
  */
 export function getToken() {
     return localStorage.getItem(TOKEN_NAME);
@@ -25,8 +23,6 @@ export function getToken() {
 
 /**
  * Delete the token from the localstorage
- *
- * @author Peter Mollet
  */
 export function removeToken() {
     localStorage.removeItem(TOKEN_NAME);
@@ -36,7 +32,6 @@ export function removeToken() {
  * Get the payload of the JWT Token (with experition date, login and roles)
  *
  * @return {object} payload of the token
- * @author Peter Mollet
  */
 export function getPayloadToken(token) {
     return jwt_decode(token);
@@ -47,7 +42,6 @@ export function getPayloadToken(token) {
  * Check the token, and it's validity
  *
  * @return {boolean} true if user is authenticated
- * @author Peter Mollet
  */
 export function isTokenValid(token) {
     try {

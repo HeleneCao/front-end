@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { skillService } from "../service/skill.service";
 
-const ModalTeamAdd = ({ isOpen, onClose }) => {
+const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
   const [teamName, setTeamName] = useState("");
   const [language, setLanguage] = useState("");
-  const [numPeople, setNumPeople] = useState("");
+ 
 
   const handleAddTeam = () => {
-    console.log("confirm");
-    onClose;
+    console.log("ajoutée");
+    confirm;
   };
+
+  const [skills, setSkills] = useState([]);
+
+  useEffect(() => {
+    skillService.getAllSkills()
+    .then(res => {
+      setSkills(res.data.content)
+    })
+    .catch(err => console.log(err))
+  }, []);
 
   return (
     <>
@@ -46,6 +57,13 @@ const ModalTeamAdd = ({ isOpen, onClose }) => {
                   onChange={(e) => setLanguage(e.target.value)}
                 >
                  
+                  {/* Récupérez les langages depuis l'API */}
+                  {skills.map((skill, index) => (
+                    <option key={index} value={skill.label}>
+                      {skill.label}
+                    </option>
+                  ))}
+                  
                 </select>
               </div>
 
