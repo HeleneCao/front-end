@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {teamService} from "../service/team.service.jsx";
-import React, { useState }from 'react';
-import DialogAdd from "./DialogAdd";
+import ModalTeamAdd from './ModalTeamAdd.jsx';
 
 
 const GestionEquipes = () => {
@@ -13,15 +12,15 @@ const GestionEquipes = () => {
     },[]);
 
 
-    const [showTaskDialog, setShowTaskDialog] = useState(false);
+    const [showModalTeamAdd, setShowModalTeam] = useState(false);
 
     const confirm = () => {
         console.log('Confirm');
-        setShowTaskDialog(false);
+        setShowModalTeam(false);
     }
 
     const cancel = () => {
-        setShowTaskDialog(false);
+        setShowModalTeam(false);
     }
 
 
@@ -68,18 +67,17 @@ const GestionEquipes = () => {
                 <div className="p-7 grid place-items-end">
                     <button
                         className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end"
-                        onClick={() => {setShowTaskDialog(true)}}>
+                        onClick={() => {setShowModalTeam(true)}}>
                         Ajouter une team
                     </button>
                 </div>
 
                 <div>
                     <div>
-                <DialogAdd show={showTaskDialog}
-                title="Ajouter une team"
+                <ModalTeamAdd isOpen={showModalTeamAdd}
                 confirm={confirm}
                 cancel={cancel}
-                description="Nom de la team" />
+                 />
                     </div>  
                 </div>
             </div>
