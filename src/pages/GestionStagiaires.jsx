@@ -1,6 +1,18 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
+import {internService} from "../service/intern.service.jsx";
 
 const GestionStagiaires = () => {
+
+    const [interns,setInterns] =useState([]);
+
+    useEffect(() => {
+    internService.getAllInterns()
+        .then(res => {
+            setInterns(res.data.content)
+        })
+        .catch(err => console.log(err))
+    }, []);
+    console.log(interns);
     return (
 
         <div className="p-28">
@@ -20,32 +32,23 @@ const GestionStagiaires = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {/* row 1 */}
-                    <tr>
-                        <td className="border-2 border-b-white border-r-gray-500">Charef</td>
-                        <td className="border-2 border-b-white border-r-gray-500">Miloud</td>
-                        <td className="border-2 border-b-white border-r-gray-500">Feteam</td>
-                        <td className="text-center">
-                            <button><img
-                                src="src\images\Vector.png"
-                                alt="Bouton archivé"
-                                className="h-3 w-auto mr-2"
-                            /></button>
-                        </td>
-                    </tr>
-                    {/* row 2 */}
-                    <tr>
-                        <td>Cao</td>
-                        <td>Hélène</td>
-                        <td>Feteam</td>
-                        <td className="text-center">
-                            <button><img
-                                src="src\images\Vector.png"
-                                alt="Bouton archivé"
-                                className="h-3 w-auto mr-2"
-                            /></button>
-                        </td>
-                    </tr>
+                    {interns.map((intern,index) => (
+                        <tr key={index}>
+                            <td>{intern.lastName}</td>
+                            <td>{intern.firstName}</td>
+                            <td>{intern.nomTeam.join(" - ")}</td>
+                            <td className="text-center">
+                                <button>
+                                    <img
+                                        src="src\images\Vector.png"
+                                        alt="Bouton archivé"
+                                        className="h-3 w-auto mr-2"
+                                    />
+                                </button>
+                            </td>
+                        </tr>
+                        ))
+                    }
 
                     </tbody>
                 </table>

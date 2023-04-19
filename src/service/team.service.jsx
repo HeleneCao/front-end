@@ -6,7 +6,6 @@ let getAllTeams = () =>{
 }
 
 
-
 export const teamService = {
     getAllTeams
 }
