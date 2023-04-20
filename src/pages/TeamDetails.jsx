@@ -1,42 +1,60 @@
 import React, { useEffect, useState } from "react";
 import { teamService } from "../service/team.service";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
- const TeamDetails = () => {
+const TeamDetails = () => {
+  let { uuid } = useParams();
+  console.log(uuid);
 
-     let {uuid} = useParams();
-     console.log(uuid);
-     // { match }
+  const [team, setTeam] = useState(null);
 
-    const [team, setTeam] = useState();
+  useEffect(() => {
+    teamService
+      .getTeamByUuid(uuid)
+      .then((res) => {
+        console.log(res.data);
+        setTeam(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-     useEffect(() => {
-         teamService.getTeamByUuid(uuid)
-             .then(res => {
-                 console.log(res.data.content)
-             })
-             .catch(err => console.log(err))
-     },[]);
-    //
-    // useEffect(() => {
-    //     teamService.getTeamByUuid(match.params.id)
-    //         .then(res => {
-    //             setTeam(res.data);
-    //         })
-    //         .catch(err => console.log(err));
-    // }, [match.params.id]);
-    //
-    // if (!team) {
-    //     return <div>Chargement...</div>;
-    // }
+  if (!team) {
+    return <div>Chargement...</div>;
+  }
 
-    return (
-        <div>
-            {/*<h1>{team.name}</h1>*/}
-            {/*<p>{team.description}</p>*/}
-            <h1>user edit</h1>
-        </div>
-    );
+  return (
+    <table className="min-w-full divide-y divide-gray-200">
+      <thead className="bg-gray-50">
+        <tr>
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Nom de team
+          </th>
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Langage utilisé
+          </th>
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Nombre de personnes
+          </th>
+        </tr>
+      </thead>
+      <tbody className="bg-white divide-y divide-gray-200">
+        <tr key={team.uuid}>
+          <td className="px-6 py-4 whitespace-nowrap">{team.name}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{team.skills.map((skill) => skill.label).join(" - ")}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{team.nbrIntern}</td>
+        </tr>
+      </tbody>
+    </table>
+  );
 };
 
 export default TeamDetails;

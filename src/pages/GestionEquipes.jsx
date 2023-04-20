@@ -53,8 +53,8 @@ const GestionEquipes = () => {
                                 //
                                 >
                                 <td><Link to={`/detail/${team.uuid}`}>{team.name}</Link></td>
-                                <td>{team.skills.map((skill)=>skill.label )}</td>
-                                <td>{team.nbrIntern}</td>
+                                <td><Link to={`/detail/${team.uuid}`}>{team.skills.map((skill) => skill.label).join(" - ")}</Link></td>
+                                <td><Link to={`/detail/${team.uuid}`}>{team.nbrIntern}</Link></td>
                                 <td className="text-center">
                                     <button>
                                         <img
