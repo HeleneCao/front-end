@@ -9,6 +9,7 @@ import DashboardPage from "./pages/DashboardPage.jsx";
 import Error from "./_utils/Error.jsx";
 import GestionStagiaires from "./pages/GestionStagiaires.jsx";
 import GestionResponsables from "./pages/GestionResponsables.jsx";
+import TeamDetails from "./pages/TeamDetails.jsx";
 
 function App() {
   return (
@@ -25,8 +26,7 @@ function App() {
               <Route path="/planning" element={<PlanningPage/>} />
               <Route path="/gestionStagiaires" element={<GestionStagiaires/>} />
               <Route path="/gestionResponsables" element={<GestionResponsables/>}/>
-
-
+              <Route path="/detail/:uuid" element={<TeamDetails/>}/>
             </Route>
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="*" element={<Error/>} />

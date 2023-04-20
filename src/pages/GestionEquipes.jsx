@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {teamService} from "../service/team.service.jsx";
+import {Link, useNavigate} from 'react-router-dom';
 
 
 const GestionEquipes = () => {
 
     const [teams,setTeams] =useState([]);
+    // const [selectedTeamUuid, setSelectedTeamUuid] = useState(null);
+    // const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -14,7 +17,11 @@ const GestionEquipes = () => {
             })
             .catch(err => console.log(err))
     },[]);
-    console.log(teams);
+
+    // const handleTeamClick = (uuid) => {
+    //     navigate('/team/uuid/' + uuid)
+    // };
+ console.log(teams);
     return (
         <div className="p-28">
             <div className="overflow-x-auto">
@@ -40,8 +47,12 @@ const GestionEquipes = () => {
                     </thead>
                     <tbody>
                     {teams.map((team,index) => (
-                            <tr key={index}>
-                                <td>{team.name}</td>
+                            <tr key={index}
+                                // onClick={() => handleTeamClick(team.uuid)}
+                                // className={selectedTeamUuid === team.uuid ? 'bg-gray-200' : ''}
+                                //
+                                >
+                                <td><Link to={`/detail/${team.uuid}`}>{team.name}</Link></td>
                                 <td>{team.skills.map((skill)=>skill.label )}</td>
                                 <td>{team.nbrIntern}</td>
                                 <td className="text-center">
