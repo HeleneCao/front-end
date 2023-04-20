@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {teamService} from "../service/team.service.jsx";
 import {Link, useNavigate} from 'react-router-dom';
+import ModalTeamAdd from './ModalTeamAdd.jsx';
 
 
 const GestionEquipes = () => {
@@ -22,6 +23,17 @@ const GestionEquipes = () => {
     //     navigate('/team/uuid/' + uuid)
     // };
  console.log(teams);
+
+ const [showModalTeamAdd, setShowModalTeam] = useState(false);
+
+ const confirm = () => {
+
+     setShowModalTeam(false);
+ }
+
+ const onClose = () => {
+     setShowModalTeam(false);
+ }
     return (
         <div className="p-28">
             <div className="overflow-x-auto">

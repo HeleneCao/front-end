@@ -1,25 +1,39 @@
 import { useEffect, useState } from "react";
 import { skillService } from "../service/skill.service";
+import Select from "react-select";
+
 
 const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
   const [teamName, setTeamName] = useState("");
   const [language, setLanguage] = useState("");
+  const [skills, setSkills] = useState([]);
  
-
   const handleAddTeam = () => {
-    console.log("ajoutée");
+    //creer la fonction ajouté
+    console.log(teamName);
+    console.log(language);
     confirm;
   };
-
-  const [skills, setSkills] = useState([]);
 
   useEffect(() => {
     skillService.getAllSkills()
     .then(res => {
-      setSkills(res.data.content)
+      setSkills(
+        res.data.content.map(s => {
+          return {
+            value: s.label,
+            label: s.label
+          }
+        })
+        )
     })
     .catch(err => console.log(err))
   }, []);
+
+  console.log(skills)
+
+  
+  const [selectedOption, setSelectedOption] = useState(null);
 
   return (
     <>
@@ -50,21 +64,23 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
                 <label className="block text-gray-800 mb-2" htmlFor="language">
                   Langage utilisées:
                 </label>
-                <select className="border-2 border-grey rounded-full p-1 px-5"
-                multiple=""
-                  id="language"
-                  value={language}
-                  onChange={(e) => setLanguage(e.target.value)}
-                >
-                 
-                  {/* Récupérez les langages depuis l'API */}
-                  {skills.map((skill, index) => (
-                    <option key={index} value={skill.label}>
-                      {skill.label}
-                    </option>
-                  ))}
-                  
-                </select>
+                <div>
+          
+                
+                <div>
+                
+
+
+                </div>
+                <Select
+                defaultValue={selectedOption}
+                onChange={setSelectedOption}
+                options={skills} isMulti
+                 />
+                </div>
+
+
+
               </div>
 
               </div>
@@ -77,6 +93,7 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
                   Annuler
                 </button>
                 <button
+                  type='submit'
                   className= " border-2 border-blue-500 rounded-full p-1 px-5 font-bold"
                   onClick={handleAddTeam}
                 >
