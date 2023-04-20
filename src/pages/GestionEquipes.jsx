@@ -59,11 +59,7 @@ const GestionEquipes = () => {
                     </thead>
                     <tbody>
                     {teams.map((team,index) => (
-                            <tr key={index}
-                                // onClick={() => handleTeamClick(team.uuid)}
-                                // className={selectedTeamUuid === team.uuid ? 'bg-gray-200' : ''}
-                                //
-                                >
+                            <tr key={index}>
                                 <td><Link to={`/detail/${team.uuid}`}>{team.name}</Link></td>
                                 <td><Link to={`/detail/${team.uuid}`}>{team.skills.map((skill) => skill.label).join(" - ")}</Link></td>
                                 <td><Link to={`/detail/${team.uuid}`}>{team.nbrIntern}</Link></td>
