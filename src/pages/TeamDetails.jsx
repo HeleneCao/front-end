@@ -6,34 +6,19 @@ import {useParams} from "react-router-dom";
 
      let {uuid} = useParams();
      console.log(uuid);
-     // { match }
 
-    const [team, setTeam] = useState();
+    const [team, setTeam] = useState([]);
 
      useEffect(() => {
          teamService.getTeamByUuid(uuid)
              .then(res => {
-                 console.log(res.data.content)
+                 console.log(res.data)
              })
              .catch(err => console.log(err))
      },[]);
-    //
-    // useEffect(() => {
-    //     teamService.getTeamByUuid(match.params.id)
-    //         .then(res => {
-    //             setTeam(res.data);
-    //         })
-    //         .catch(err => console.log(err));
-    // }, [match.params.id]);
-    //
-    // if (!team) {
-    //     return <div>Chargement...</div>;
-    // }
 
     return (
         <div>
-            {/*<h1>{team.name}</h1>*/}
-            {/*<p>{team.description}</p>*/}
             <h1>user edit</h1>
         </div>
     );
