@@ -50,7 +50,7 @@ return (
           <div className="fixed inset-0 bg-black opacity-50 z-40"></div>
           <div className="fixed inset-0 z-50 flex justify-center items-center">
 
-            <div className="bg-white w-96 p-6 rounded-lg shadow-lg">
+            <div className="bg-white w-1/2 p-6 rounded-lg shadow-lg">
               <div className="p-3 bg-blue-500 text-center border border-blue-500 rounded-t-2xl">
               <h2 className="font-mono not-italic font-bold text-2xl leading-9 text-white">Modifier la team</h2>
               </div>
@@ -58,7 +58,7 @@ return (
 <div className="p-10">
               <div className="mb-4">
                 <input
-                  className="border-2 border-grey-800  rounded-full p-1 px-5"
+                  className="border-2 border-grey-800  rounded-full p-1 px-5 w-full"
                   type="text"
                   id="team-name"
                   placeholder="Nom de la team"
@@ -86,9 +86,9 @@ return (
 
               </div>
 
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <input
-                  className="border-2 border-grey-800  rounded-full p-1 px-5"
+                  className="border-2 border-grey-800  rounded-full p-1 px-5 w-full"
                   type="text"
                   id="date-creation"
                   placeholder="team-Date de creation"
@@ -96,11 +96,11 @@ return (
                   onChange={(e) => setTeamCreationDate(e.target.value)}
                   
                 />
-              </div>
+              </div> */}
 
               <div className="mb-4">
                 <input
-                  className="border-2 border-grey-800  rounded-full p-1 px-5"
+                  className="border-2 border-grey-800  rounded-full p-1 px-5 w-full"
                   type="text"
                   id="team-repo"
                   placeholder="team-Url repository"
@@ -112,7 +112,7 @@ return (
 
               <div className="mb-4">
                 <input
-                  className="border-2 border-grey-800  rounded-full p-1 px-5"
+                  className="border-2 border-grey-800  rounded-full p-1 px-5 w-full"
                   type="text"
                   id="team-backlog"
                   placeholder="Url backlog"
