@@ -1,9 +1,12 @@
 import React, {useState,useEffect} from 'react';
 import {supervisorService} from "../service/supervisor.service.jsx";
+import ModalSupervisorAdd from './ModalSupervisorAdd.jsx';
 
 const ManagementSupervisors = () => {
 
     const [supervisors,setSupervisors] =useState([]);
+    const [update, setUpdate]= useState(false);
+    const [showModalSupervisorAdd, setShowModalSupervisorAdd] = useState(false);
 
     useEffect(() => {
         supervisorService.getAllSupervisors()
@@ -11,8 +14,21 @@ const ManagementSupervisors = () => {
                 setSupervisors(res.data.content)
             })
             .catch(err => console.log(err))
-    }, []);
+    }, [update]);
+
 console.log(supervisors);
+
+const confirm = () => {
+
+    setShowModalSupervisorAdd(false);
+    setUpdate(!update)
+
+}
+
+const onClose = () => {
+    setShowModalSupervisorAdd(false);
+}
+
     return (
         <div className="p-28">
             <div className="overflow-x-auto">
@@ -50,9 +66,18 @@ console.log(supervisors);
                     </tbody>
                 </table>
                 <div className="p-7 grid place-items-end">
-                    <button className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end">Ajouter un
-                        membre
+                    <button className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end"
+                    onClick={() => {setShowModalSupervisorAdd(true)}}>
+                        Ajouter un Responsable
                     </button>
+                </div>
+                <div>
+                    <div>
+                <ModalSupervisorAdd isOpen={showModalSupervisorAdd}
+                confirm={confirm}
+                onClose={onClose}
+                 />
+                    </div>  
                 </div>
             </div>
         </div>

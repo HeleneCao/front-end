@@ -8,8 +8,6 @@ import * as Yup from "yup";
 const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
   const [teamName, setTeamName] = useState("");
   const [creationDate, setCreationDate] = useState(new Date().getTime());
-  const handleCalendarClose = () => console.log("Calendar closed");
-  const handleCalendarOpen = () => console.log("Calendar opened");
   const [skills, setSkills] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -156,4 +154,3 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
 };
 
 export default ModalTeamAdd;
-

@@ -8,6 +8,7 @@ const ManagementTeams = () => {
 
     const [teams,setTeams] =useState([]);
     const [update, setUpdate]= useState(false);
+    const [showModalTeamAdd, setShowModalTeamAdd] = useState(false);
 
     useEffect(() => {
         teamService.getAllTeams()
@@ -19,20 +20,16 @@ const ManagementTeams = () => {
 
     
  console.log(teams);
-
- const [showModalTeamAdd, setShowModalTeam] = useState(false);
-
  
-
  const confirm = () => {
 
-     setShowModalTeam(false);
+     setShowModalTeamAdd(false);
      setUpdate(!update)
 
  }
 
  const onClose = () => {
-     setShowModalTeam(false);
+     setShowModalTeamAdd(false);
  }
 
  
@@ -83,7 +80,7 @@ const ManagementTeams = () => {
                 <div className="p-7 grid place-items-end">
                     <button
                         className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end"
-                        onClick={() => {setShowModalTeam(true)}}>
+                        onClick={() => {setShowModalTeamAdd(true)}}>
                         Ajouter une team
                     </button>
                 </div>
