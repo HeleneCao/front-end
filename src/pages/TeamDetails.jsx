@@ -60,6 +60,24 @@ const onClose = () => {
           >
             Nombre de personnes
           </th>
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Date de création
+          </th>
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Url backlog
+          </th>
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Url repository
+          </th>
         </tr>
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
@@ -67,6 +85,9 @@ const onClose = () => {
           <td className="px-6 py-4 whitespace-nowrap">{team.name}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.skills.map((skill) => skill.label).join(" - ")}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.interns.length}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{team.creationDate}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{team.urlRepository}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{team.urlBacklog}</td>
         </tr>
       </tbody>
     </table>
@@ -118,7 +139,7 @@ const onClose = () => {
               <td className="text-center">
                 <button>
                   <img
-                      src="..\src\images\Vector.png"
+                      src="src\images\Vector.png"
                       alt="Bouton archivé"
                       className="h-3 w-auto mr-2"
                   />

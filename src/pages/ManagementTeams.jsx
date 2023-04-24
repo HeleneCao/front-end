@@ -4,12 +4,10 @@ import {Link, useNavigate} from 'react-router-dom';
 import ModalTeamAdd from './ModalTeamAdd.jsx';
 
 
-const GestionEquipes = () => {
+const ManagementTeams = () => {
 
     const [teams,setTeams] =useState([]);
-    // const [selectedTeamUuid, setSelectedTeamUuid] = useState(null);
-    // const navigate = useNavigate();
-
+    const [update, setUpdate]= useState(false);
 
     useEffect(() => {
         teamService.getAllTeams()
@@ -17,11 +15,9 @@ const GestionEquipes = () => {
                 setTeams(res.data.content)
             })
             .catch(err => console.log(err))
-    },[]);
+    },[update]);
 
-    // const handleTeamClick = (uuid) => {
-    //     navigate('/team/uuid/' + uuid)
-    // };
+    
  console.log(teams);
 
  const [showModalTeamAdd, setShowModalTeam] = useState(false);
@@ -31,6 +27,8 @@ const GestionEquipes = () => {
  const confirm = () => {
 
      setShowModalTeam(false);
+     setUpdate(!update)
+
  }
 
  const onClose = () => {
@@ -64,9 +62,9 @@ const GestionEquipes = () => {
                     <tbody>
                     {teams.map((team,index) => (
                             <tr key={index}>
-                                <td><Link to={`/detail/${team.uuid}`}>{team.name}</Link></td>
-                                <td><Link to={`/detail/${team.uuid}`}>{team.skills.map((skill) => skill.label).join(" - ")}</Link></td>
-                                <td><Link to={`/detail/${team.uuid}`}>{team.nbrIntern}</Link></td>
+                                <td><Link to={`/gestionEquipes/detail/${team.uuid}`}>{team.name}</Link></td>
+                                <td><Link to={`/gestionEquipes/detail/${team.uuid}`}>{team.skills.map((skill) => skill.label).join(" - ")}</Link></td>
+                                <td><Link to={`/gestionEquipes/detail/${team.uuid}`}>{team.nbrIntern}</Link></td>
                                 <td className="text-center">
                                     <button>
                                         <img
@@ -104,4 +102,4 @@ const GestionEquipes = () => {
     );
 };
 
-export default GestionEquipes;
+export default ManagementTeams;

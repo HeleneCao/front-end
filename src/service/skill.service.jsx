@@ -6,7 +6,6 @@ let getAllSkills = () =>{
    }
    
    
-   
    export const skillService = {
        getAllSkills
    }
