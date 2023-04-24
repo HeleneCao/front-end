@@ -2,6 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./Searchbar";
 import MenuGestion from "./MenuGestion";
+import LogoInsy2s from "./../images/LogoInsy2s.png";
+import LogoIncubateur from "./../images/Incubateur.png";
+import LogoDashboard from "./../images/Dashboard.png";
+import LogoPlanning from "./../images/Planning.png";
+import LogoLogin from "./../images/Login.png";
+
 
 function Navbar() {
   return (
@@ -12,7 +18,7 @@ function Navbar() {
         <div className="flex items-center">
           <Link to="/">
             <img
-              src="src\images\LogoInsy2s.png"
+              src={LogoInsy2s}
               alt="Logo Insy2s"
               className="h-10 w-auto mr-6"
             />
@@ -22,7 +28,7 @@ function Navbar() {
         <div className="flex items-center">
 
         <img
-          src="src\images\Incubateur.png"
+          src={LogoIncubateur}
           alt="Logo Incubateur"
           className="h6 w-auto mr-3"
         />
@@ -34,7 +40,7 @@ function Navbar() {
           </Link>
 
           <img
-          src="src\images\Dashbord.png"
+          src={LogoDashboard}
           alt="Logo Incubateur"
           className="h-6 w-auto mr-3"
         />
@@ -46,7 +52,7 @@ function Navbar() {
           </Link>
           
           <img
-          src="src\images\Planning.png"
+          src={LogoPlanning}
           alt="Logo Planning"
           className="h-6 w-auto mr-3"
         />
@@ -64,7 +70,7 @@ function Navbar() {
         <div className="flex items-center">
           <Link to="/login">
             <img
-              src="src\images\Login.png"
+              src={LogoLogin}
               alt="Contact Logo"
               className="h-6 w-auto mr-3"
             />

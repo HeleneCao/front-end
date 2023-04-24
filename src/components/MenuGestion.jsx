@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import LogoMenu from "./../images/BarreMenu.png";
+import LogoMenuBis from "./../images/PolygonMenu.png";
 
 const MenuGestion = () => {
   return (
@@ -9,12 +11,12 @@ const MenuGestion = () => {
   <li></li>
   <li tabIndex={0}>
     <span><img
-              src="src\images\BarreMenu.png"
+              src={LogoMenu}
               alt="icone menu"
               className="h-4 w-auto mr-4"
             />Gestions
         <img
-              src="src\images\PolygonMenu.png"
+              src={LogoMenuBis}
               alt="icone menu"
               className="h-3 w-auto mr-2"
             /></span>

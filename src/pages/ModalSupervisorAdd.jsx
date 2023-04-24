@@ -1,26 +1,26 @@
 import React from "react";
-import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import apiBackEnd from "../service/api.Backend";
 import * as Yup from "yup";
 
 const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
-  const [supervisorLastName, setSupervisorLastName] = useState("");
-  const [supervisorFirstName, setSupervisorFirstName] = useState("");
-  const [supervisorEmail, setSupervisorEmail] = useState("");
+
 
   const validationSchema = Yup.object().shape({
     lastName: Yup.string().required("Le nom est requis"),
     firstName: Yup.string().required("Le prénom est requis"),
     email: Yup.string().required("L'email est requis"),
+    password: Yup.string().required("Mot de passe est requis")
   });
 
   const handleAddSupervisor = (values) => {
     console.log(values);
+
     const supervisorDto = {
       lastName: values.lastName,
       firstName: values.firstName,
-      email: values.email
+      email: values.email,
+      password: values.password
     };
 
     apiBackEnd
@@ -39,7 +39,7 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
       {isOpen ? (
         <>
           <Formik
-            initialValues={{ last_name: "", first_name: "", email: "" }}
+            initialValues={{ last_name: "", first_name: "", email: "", password: "" }}
             validationSchema={validationSchema}
             onSubmit={handleAddSupervisor}
           >
@@ -50,20 +50,20 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
                   <div className="bg-white w-96 p-6 rounded-lg shadow-lg">
                     <div className="p-3 bg-blue-500 text-center border border-blue-500 rounded-t-2xl">
                       <h2 className="font-mono not-italic font-bold text-2xl leading-9 text-white">
-                        Ajouter une team
+                        Ajouter un responsable
                       </h2>
                     </div>
 
-                    <div className="p-10">
-                      <div className="mb-4">
+                    <div className="pl-10 mt-5">
+                      <div className="">
                         <Field
                           className="border-2 border-grey-800  rounded-full p-1 px-5"
                           type="text"
-                          name="last_name"
-                          id="last_name"
+                          name="lastName"
+                          id="lastName"
                           placeholder="Nom"
                         />
-                        <ErrorMessage name="last_name">
+                        <ErrorMessage name="lastName">
                           {(msg) => (
                             <div className="text-red-600 text-sm">{msg}</div>
                           )}
@@ -71,16 +71,16 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
                       </div>
                     </div>
 
-                    <div className="p-10">
-                      <div className="mb-4">
+                    <div className="pl-10 mt-5">
+                      <div className="">
                         <Field
                           className="border-2 border-grey-800  rounded-full p-1 px-5"
                           type="text"
-                          name="first_name"
-                          id="first_name"
+                          name="firstName"
+                          id="firstName"
                           placeholder="Prénom"
                         />
-                        <ErrorMessage name="first_name">
+                        <ErrorMessage name="firstName">
                           {(msg) => (
                             <div className="text-red-600 text-sm">{msg}</div>
                           )}
@@ -88,8 +88,8 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
                       </div>
                     </div>
 
-                    <div className="p-10">
-                      <div className="mb-4">
+                    <div className="pl-10 mt-5">
+                      <div className="">
                         <Field
                           className="border-2 border-grey-800  rounded-full p-1 px-5"
                           type="text"
@@ -105,9 +105,27 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
                       </div>
                     </div>
 
-                    <div className="flex justify-end">
+                    <div className="pl-10 mt-5">
+                      <div className="">
+                        <Field
+                          className="border-2 border-grey-800  rounded-full p-1 px-5"
+                          id="password"
+                          name="password"
+                          type="password"
+                          placeholder="mot de passe"
+                        />
+                        <ErrorMessage name="password">
+                          {(msg) => (
+                            <div className="text-red-600 text-sm">{msg}</div>
+                          )}
+                        </ErrorMessage>
+                      </div>
+                    </div>
+                    
+
+                    <div className="flex justify-end mt-5" >
                       <button
-                        className="border-2 border-blue-500 rounded-full p-1 px-5 font-bold"
+                        className="border-2 border-blue-500 rounded-full p-1 px-5 font-bold "
                         onClick={onClose}
                       >
                         Annuler
@@ -115,7 +133,6 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
                       <button
                         type="submit"
                         className=" border-2 border-blue-500 rounded-full p-1 px-5 font-bold"
-                        // onClick={handleAddTeam}
                       >
                         Ajouter
                       </button>

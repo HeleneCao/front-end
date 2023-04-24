@@ -18,6 +18,7 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
 
   const handleAddTeam = (values) => {
     console.log(values);
+
     const teamDto = {
       name: values.name,
       creationDate: values.creationDate,
@@ -62,7 +63,7 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
             validationSchema={validationSchema}
             onSubmit={handleAddTeam}
           >
-            {({ isSubmitting, setFieldValue }) => (
+            {({ setFieldValue }) => (
               <Form className="mt-8 space-y-6">
                 <div className="fixed inset-0 bg-black opacity-50 z-40"></div>
                 <div className="fixed inset-0 z-50 flex justify-center items-center">
@@ -137,7 +138,6 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
                       <button
                         type="submit"
                         className=" border-2 border-blue-500 rounded-full p-1 px-5 font-bold"
-                        // onClick={handleAddTeam}
                       >
                         Ajouter
                       </button>

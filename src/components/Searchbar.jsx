@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import LogoSearch from "./../images/Search.png";
 
 function SearchBar() {
   const [searchValue, setSearchValue] = useState("");
@@ -21,7 +22,7 @@ function SearchBar() {
       />
       <button type="button" onClick={handleSearch}>
         <img
-          src="src\images\loupe.png"
+          src={LogoSearch}
           alt="Logo Planning"
           className="h-4 w-auto"          
         ></img>
