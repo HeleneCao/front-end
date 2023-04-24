@@ -45,6 +45,24 @@ const TeamDetails = () => {
           >
             Nombre de personnes
           </th>
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Date de création
+          </th>
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Url backlog
+          </th>
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Url repository
+          </th>
         </tr>
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
@@ -52,9 +70,14 @@ const TeamDetails = () => {
           <td className="px-6 py-4 whitespace-nowrap">{team.name}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.skills.map((skill) => skill.label).join(" - ")}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.interns.length}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{team.creationDate}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{team.urlRepository}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{team.urlBacklog}</td>
         </tr>
       </tbody>
     </table>
+
+    
       <div className="p-28">
         <div className="overflow-x-auto">
           <div className="p-3 bg-blue-500 text-center border border-blue-500 rounded-t-2xl">
@@ -83,7 +106,7 @@ const TeamDetails = () => {
               <td className="text-center">
                 <button>
                   <img
-                      src="..\src\images\Vector.png"
+                      src="src\images\Vector.png"
                       alt="Bouton archivé"
                       className="h-3 w-auto mr-2"
                   />
