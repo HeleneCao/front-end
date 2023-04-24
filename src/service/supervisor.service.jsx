@@ -10,5 +10,5 @@ let getSupervisorByUuid = (uuid) => {
 }
 
 export const supervisorService = {
-    getAllSupervisors, getAllSupervisors
+    getAllSupervisors, getSupervisorByUuid
 }

@@ -8,7 +8,7 @@ const TeamDetails = () => {
 
   const [team, setTeam] = useState(null);
 
-  useEffect(() => {
+  useEffect(() => { 
     teamService
       .getTeamByUuid(uuid)
       .then((res) => {
