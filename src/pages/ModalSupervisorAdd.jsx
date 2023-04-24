@@ -10,17 +10,17 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
   const [supervisorEmail, setSupervisorEmail] = useState("");
 
   const validationSchema = Yup.object().shape({
-    last_name: Yup.string().required("Le nom est requis"),
-    first_name: Yup.string().required("Le prénom est requis"),
+    lastName: Yup.string().required("Le nom est requis"),
+    firstName: Yup.string().required("Le prénom est requis"),
     email: Yup.string().required("L'email est requis"),
   });
 
   const handleAddSupervisor = (values) => {
     console.log(values);
     const supervisorDto = {
-      last_name: values.last_name,
-      first_name: values.first_name,
-      email: values.email,
+      lastName: values.lastName,
+      firstName: values.firstName,
+      email: values.email
     };
 
     apiBackEnd
