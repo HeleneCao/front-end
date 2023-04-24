@@ -156,3 +156,4 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
 };
 
 export default ModalTeamAdd;
+
