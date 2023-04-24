@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { teamService } from "../service/team.service";
 import {Link, useParams} from "react-router-dom";
 import ModalUpdateTeam from './ModalUpdateTeam.jsx'
-
+import { compareAsc, format } from 'date-fns'
 const TeamDetails = () => {
   let { uuid } = useParams();
   console.log(uuid);
 
   const [team, setTeam] = useState(null);
-
     const [showModalUpdateTeam, setShowModalUpdateTeam] = useState(false);
 
   
@@ -27,6 +26,7 @@ const onClose = () => {
       .then((res) => {
         console.log(res.data);
         setTeam(res.data);
+
       })
       .catch((err) => console.log(err));
   }, []);
@@ -85,7 +85,7 @@ const onClose = () => {
           <td className="px-6 py-4 whitespace-nowrap">{team.name}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.skills.map((skill) => skill.label).join(" - ")}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.interns.length}</td>
-          <td className="px-6 py-4 whitespace-nowrap">{team.creationDate}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{format(new Date(team.creationDate), 'dd-MM-yyyy')}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.urlRepository}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.urlBacklog}</td>
         </tr>
