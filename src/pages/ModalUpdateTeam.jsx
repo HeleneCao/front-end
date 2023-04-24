@@ -4,10 +4,15 @@ import Select from "react-select";
 
 
 
-const ModalUpdateTeam = ({ isOpen, onClose, confirm, nomTeam }) => {
+const ModalUpdateTeam = ({ isOpen, onClose, confirm, nomTeam, dateCreation, repo ,backlog }) => {
   const [teamName, setTeamName] = useState("");
   const [language, setLanguage] = useState("");
   const [skills, setSkills] = useState([]);
+  const [teamCreationDate, setTeamCreationDate] = useState("");
+  const [teamRepository, setTeamRepository] = useState ("");
+  const [teamBacklog, setTeamBacklog] = useState ("");
+
+  
  
   const handleUpdateTeam = () => {
     //creer la fonction modifier
@@ -67,13 +72,8 @@ return (
                 <label className="block text-gray-800 mb-2" htmlFor="language">
                   Langage utilisées:
                 </label>
+                <div>      
                 <div>
-          
-                
-                <div>
-                
-
-
                 </div>
                 <Select
                 defaultValue={selectedOption}
@@ -84,6 +84,42 @@ return (
 
 
 
+              </div>
+
+              <div className="mb-4">
+                <input
+                  className="border-2 border-grey-800  rounded-full p-1 px-5"
+                  type="text"
+                  id="date-creation"
+                  placeholder="team-Date de creation"
+                  value={dateCreation}
+                  onChange={(e) => setTeamCreationDate(e.target.value)}
+                  
+                />
+              </div>
+
+              <div className="mb-4">
+                <input
+                  className="border-2 border-grey-800  rounded-full p-1 px-5"
+                  type="text"
+                  id="team-repo"
+                  placeholder="team-Url repository"
+                  value={repo}
+                  onChange={(e) => setTeamRepository(e.target.value)}
+                  
+                />
+              </div>
+
+              <div className="mb-4">
+                <input
+                  className="border-2 border-grey-800  rounded-full p-1 px-5"
+                  type="text"
+                  id="team-backlog"
+                  placeholder="Url backlog"
+                  value={backlog}
+                  onChange={(e) => setTeamBacklog(e.target.value)}
+                  
+                />
               </div>
 
               </div>

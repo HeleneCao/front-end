@@ -105,6 +105,9 @@ const onClose = () => {
                 confirm={confirm}
                 onClose={onClose}
                 nomTeam={team.name}
+                dateCreation={team.creationDate}
+                repo={team.urlRepository}
+                backlog={team.urlBacklog}
                  />
                     </div>  
                 </div>
