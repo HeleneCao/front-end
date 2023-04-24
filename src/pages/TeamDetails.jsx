@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { teamService } from "../service/team.service";
 import {Link, useParams} from "react-router-dom";
+import ModalUpdateTeam from './ModalUpdateTeam.jsx'
 
 const TeamDetails = () => {
   let { uuid } = useParams();
   console.log(uuid);
 
   const [team, setTeam] = useState(null);
+
+    const [showModalUpdateTeam, setShowModalUpdateTeam] = useState(false);
+
+  
+ const confirm = () => {
+
+  setShowModalUpdateTeam(false);
+}
+
+const onClose = () => {
+  setShowModalUpdateTeam(false);
+}
 
   useEffect(() => {
     teamService
@@ -21,6 +34,8 @@ const TeamDetails = () => {
   if (!team) {
     return <div>Chargement...</div>;
   }
+
+
 
   return (
       <div>
@@ -55,6 +70,23 @@ const TeamDetails = () => {
         </tr>
       </tbody>
     </table>
+    <div className="p-7 grid place-items-end">
+                    <button
+                        className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end"
+                        onClick={() => {setShowModalUpdateTeam(true)}}>
+                        Modifier la team
+                    </button>
+                </div>
+
+                <div>
+                    <div>
+                <ModalUpdateTeam isOpen={showModalUpdateTeam}
+                confirm={confirm}
+                onClose={onClose}
+                nomTeam={team.name}
+                 />
+                    </div>  
+                </div>
       <div className="p-28">
         <div className="overflow-x-auto">
           <div className="p-3 bg-blue-500 text-center border border-blue-500 rounded-t-2xl">
@@ -72,8 +104,11 @@ const TeamDetails = () => {
              <th scope="col">
 
              </th>
+             
            </tr>
+           
             </thead>
+            
             <tbody>
         {team.interns.map((intern,index) => (
             <tr key={index}>
@@ -92,8 +127,11 @@ const TeamDetails = () => {
             </tr>
         ))
         }
+        
         </tbody>
+       
       </table>
+  
       <div className="p-7 grid place-items-end">
         <button
             className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end">

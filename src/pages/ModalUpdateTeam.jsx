@@ -1,41 +1,43 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import { skillService } from "../service/skill.service";
 import Select from "react-select";
 
 
-const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
+
+const ModalUpdateTeam = ({ isOpen, onClose, confirm, nomTeam }) => {
   const [teamName, setTeamName] = useState("");
   const [language, setLanguage] = useState("");
   const [skills, setSkills] = useState([]);
  
-  const handleAddTeam = () => {
-    //creer la fonction ajouté
+  const handleUpdateTeam = () => {
+    //creer la fonction modifier
     console.log(teamName);
     console.log(language);
     confirm;
   };
 
-  useEffect(() => {
-    skillService.getAllSkills()
-    .then(res => {
-      setSkills(
-        res.data.content.map(s => {
-          return {
-            value: s.label,
-            label: s.label
-          }
-        })
-        )
-    })
-    .catch(err => console.log(err))
-  }, []);
-
-  console.log(skills)
-
+    useEffect(() => {
+      setTeamName
+      skillService.getAllSkills()
+      .then(res => {
+        setSkills(
+          res.data.content.map(s => {
+            return {
+              value: s.label,
+              label: s.label
+            }
+          })
+          )
+      })
+      .catch(err => console.log(err))
+    }, []);
   
-  const [selectedOption, setSelectedOption] = useState(null);
+    console.log(skills)
 
-  return (
+const [selectedOption, setSelectedOption] = useState(null);
+
+
+return (
     <>
       {isOpen ? (
         <>
@@ -45,7 +47,7 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
 
             <div className="bg-white w-96 p-6 rounded-lg shadow-lg">
               <div className="p-3 bg-blue-500 text-center border border-blue-500 rounded-t-2xl">
-              <h2 className="font-mono not-italic font-bold text-2xl leading-9 text-white">Ajouter une team</h2>
+              <h2 className="font-mono not-italic font-bold text-2xl leading-9 text-white">Modifier la team</h2>
               </div>
 
 <div className="p-10">
@@ -55,8 +57,9 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
                   type="text"
                   id="team-name"
                   placeholder="Nom de la team"
-                  value={teamName}
+                  value={nomTeam}
                   onChange={(e) => setTeamName(e.target.value)}
+                  
                 />
               </div>
 
@@ -95,10 +98,10 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
                 <button
                   type='submit'
                   className= " border-2 border-blue-500 rounded-full p-1 px-5 font-bold"
-                  onClick={handleAddTeam}
+                  onClick={handleUpdateTeam}
                 >
-                  Ajouter
-                </button>
+                  Modifier
+                  </button>
               </div>
             </div>
           </div>
@@ -108,6 +111,6 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
     </>
   );
 };
+      
 
-export default ModalTeamAdd;
-
+export default ModalUpdateTeam;

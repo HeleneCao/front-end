@@ -26,6 +26,8 @@ const GestionEquipes = () => {
 
  const [showModalTeamAdd, setShowModalTeam] = useState(false);
 
+ 
+
  const confirm = () => {
 
      setShowModalTeam(false);
@@ -34,6 +36,8 @@ const GestionEquipes = () => {
  const onClose = () => {
      setShowModalTeam(false);
  }
+
+ 
     return (
         <div className="p-28">
             <div className="overflow-x-auto">
@@ -75,6 +79,7 @@ const GestionEquipes = () => {
                             </tr>
                         ))
                     }
+                   
                     </tbody>
                 </table>
                 <div className="p-7 grid place-items-end">
