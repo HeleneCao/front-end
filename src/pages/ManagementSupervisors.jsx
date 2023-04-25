@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import {supervisorService} from "../service/supervisor.service.jsx";
-import ModalSupervisorAdd from './ModalSupervisorAdd.jsx';
+import ModalSupervisorAdd from './ModalSupervisorAdd.jsx'; 
+import LogoArchive from "./../images/Vector.png";
 
 const ManagementSupervisors = () => {
 
@@ -52,7 +53,7 @@ const onClose = () => {
                             <td className="text-center">
                                 <button>
                                     <img
-                                        src="src\images\Vector.png"
+                                        src={LogoArchive}
                                         alt="Bouton archivé"
                                         className="h-3 w-auto mr-2"
                                     />

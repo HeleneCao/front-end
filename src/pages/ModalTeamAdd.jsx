@@ -6,8 +6,7 @@ import apiBackEnd from "../service/api.Backend";
 import * as Yup from "yup";
 
 const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
-  const [teamName, setTeamName] = useState("");
-  const [creationDate, setCreationDate] = useState(new Date().getTime());
+
   const [skills, setSkills] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -22,7 +21,7 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
     const teamDto = {
       name: values.name,
       creationDate: values.creationDate,
-      skills: values.skills.map((option) => option.value),
+      skills: values.skills.map((option) => option.value)
     };
 
     apiBackEnd

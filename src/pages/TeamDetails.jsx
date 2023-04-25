@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { teamService } from "../service/team.service";
 import {Link, useParams} from "react-router-dom";
-import ModalUpdateTeam from './ModalUpdateTeam.jsx'
-import { compareAsc, format } from 'date-fns'
+import ModalUpdateTeam from './ModalUpdateTeam.jsx';
+import { compareAsc, format } from 'date-fns';
+import LogoArchive from "./../images/Vector.png";
+
 const TeamDetails = () => {
   let { uuid } = useParams();
   console.log(uuid);
@@ -142,7 +144,7 @@ const onClose = () => {
               <td className="text-center">
                 <button>
                   <img
-                      src="src\images\Vector.png"
+                      src={LogoArchive}
                       alt="Bouton archivé"
                       className="h-3 w-auto mr-2"
                   />

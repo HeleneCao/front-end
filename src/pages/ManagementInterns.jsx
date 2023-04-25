@@ -1,9 +1,13 @@
 import React, {useState,useEffect} from "react";
 import {internService} from "../service/intern.service.jsx";
+import LogoArchive from "./../images/Vector.png";
+import ModalInternAdd from "./ModalInternAdd.jsx";
 
 const ManagementInterns = () => {
 
     const [interns,setInterns] =useState([]);
+    const [update, setUpdate]= useState(false);
+    const [showModalInternAdd, setShowModalInternAdd] = useState(false);
 
     useEffect(() => {
     internService.getAllInterns()
@@ -13,6 +17,18 @@ const ManagementInterns = () => {
         .catch(err => console.log(err))
     }, []);
     console.log(interns);
+
+    const confirm = () => {
+
+        setShowModalInternAdd(false);
+        setUpdate(!update)
+   
+    }
+   
+    const onClose = () => {
+        setShowModalInternAdd(false);
+    }
+
     return (
 
         <div className="p-28">
@@ -40,7 +56,7 @@ const ManagementInterns = () => {
                             <td className="text-center">
                                 <button>
                                     <img
-                                        src="src\images\Vector.png"
+                                        src={LogoArchive}
                                         alt="Bouton archivé"
                                         className="h-3 w-auto mr-2"
                                     />
@@ -53,9 +69,19 @@ const ManagementInterns = () => {
                     </tbody>
                 </table>
                 <div className="p-7 grid place-items-end">
-                    <button className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end">Ajouter un
-                        membre
+                    <button className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end"
+                    onClick={() => {setShowModalInternAdd(true)}}>
+                        Ajouter un Stagiaire
                     </button>
+                </div>
+
+                <div>
+                    <div>
+                <ModalInternAdd isOpen={showModalInternAdd}
+                confirm={confirm}
+                onClose={onClose}
+                 />
+                    </div>  
                 </div>
             </div>
         </div>
