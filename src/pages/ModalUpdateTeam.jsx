@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { skillService } from "../service/skill.service";
 import Select from "react-select";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import apiBackEnd from "../service/api.Backend";
+import { updateTeamValidationSchema } from "../constants/yupConstants";
 
 const ModalUpdateTeam = ({
   isOpen,
@@ -11,6 +14,8 @@ const ModalUpdateTeam = ({
   dateCreation,
   repo,
   backlog,
+  uuid,
+  skillsTeam
 }) => {
   const [teamName, setTeamName] = useState("");
   const [language, setLanguage] = useState("");
@@ -19,11 +24,30 @@ const ModalUpdateTeam = ({
   const [teamRepository, setTeamRepository] = useState("");
   const [teamBacklog, setTeamBacklog] = useState("");
 
-  const handleUpdateTeam = () => {
-    //creer la fonction modifier
-    console.log(teamName);
-    console.log(language);
-    confirm;
+
+
+
+
+   const handleUpdateTeam = (values) => {
+    console.log(values);
+
+    const teamDto = {
+      name: values.name,
+      urlBacklog: values.urlBacklog,
+      urlRepository: values.urlRepository,
+      skills: values.skills.map((option) => option.value),
+    };
+
+console.log(uuid)
+    apiBackEnd
+    .put(`/api/team/update/${uuid}`, teamDto)
+    .then((response) => {
+      console.log(response.data);
+      confirm();
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   };
 
   useEffect(() => {
@@ -51,10 +75,15 @@ const ModalUpdateTeam = ({
     <>
       {isOpen ? (
         <>
-        <div className="">
+        <Formik
+          initialValues={{name: nomTeam, skills: skillsTeam,urlBacklog: backlog, urlRepository: repo }}
+          validationSchema={updateTeamValidationSchema}
+          onSubmit={handleUpdateTeam}
+          >
+             {({ setFieldValue, values }) => (
+        <Form className="">
           <div className="fixed inset-0 bg-black opacity-50 z-40"></div>
           <div className="fixed inset-0 z-50 flex justify-center items-center">
-
             <div className="bg-white w-1/2 p-6 rounded-lg shadow-lg">
               <div className="p-3 bg-blue-500 text-center border border-blue-500 rounded-t-2xl">
               <h2 className="font-mono not-italic font-bold text-2xl leading-9 text-white">Modifier la team</h2>
@@ -62,15 +91,20 @@ const ModalUpdateTeam = ({
 
 <div className="p-10">
               <div className="mb-4">
-                <input
+                <Field
                   className="border-2 border-grey-800  rounded-full p-1 px-5 w-full"
                   type="text"
+                  name="name"
                   id="team-name"
                   placeholder="Nom de la team"
-                  value={nomTeam}
-                  onChange={(e) => setTeamName(e.target.value)}
+                  
                   
                 />
+                <ErrorMessage name="name">
+                          {(msg) => (
+                            <div className="text-red-600 text-sm">{msg}</div>
+                          )}
+                        </ErrorMessage>
               </div>
 
                   <div className="mb-4">
@@ -83,8 +117,9 @@ const ModalUpdateTeam = ({
                     <div>
                       <div></div>
                       <Select
-                        defaultValue={selectedOption}
-                        onChange={setSelectedOption}
+                      name="skills"
+                        defaultValue={values.skills}
+                        onChange={(value) => setFieldValue("skills", value)}
                         options={skills}
                         isMulti
                       />
@@ -104,28 +139,30 @@ const ModalUpdateTeam = ({
               </div> */}
 
               <div className="mb-4">
-                <input
+                <Field
                   className="border-2 border-grey-800  rounded-full p-1 px-5 w-full"
                   type="text"
-                  id="team-repo"
-                  placeholder="team-Url repository"
-                  value={repo}
-                  onChange={(e) => setTeamRepository(e.target.value)}
+                  name="urlBacklog"
+                  id="team-backlog"
+                  placeholder="Url backlog"
+        
                   
                 />
               </div>
 
               <div className="mb-4">
-                <input
+                <Field
                   className="border-2 border-grey-800  rounded-full p-1 px-5 w-full"
                   type="text"
-                  id="team-backlog"
-                  placeholder="Url backlog"
-                  value={backlog}
-                  onChange={(e) => setTeamBacklog(e.target.value)}
+                  name="urlRepository"
+                  id="team-repo"
+                  placeholder="team-Url repository"
+           
                   
                 />
               </div>
+
+             
 
               </div>
             
@@ -139,14 +176,16 @@ const ModalUpdateTeam = ({
                 <button
                   type='submit'
                   className= " border-2 border-blue-500 rounded-full p-1 px-5 font-bold"
-                  onClick={handleUpdateTeam}
+              
                 >
                   Modifier
                   </button>
                 </div>
               </div>
             </div>
-          </div>
+          </Form>
+             )}
+          </Formik>
         </>
       ) : null}
     </>

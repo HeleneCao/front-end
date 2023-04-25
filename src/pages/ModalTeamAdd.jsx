@@ -3,17 +3,14 @@ import { skillService } from "../service/skill.service";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Select from "react-select";
 import apiBackEnd from "../service/api.Backend";
-import * as Yup from "yup";
+import { teamValidationSchema } from "../constants/yupConstants";
 
 const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
 
   const [skills, setSkills] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Le nom est requis"),
-    creationDate: Yup.date().required("La date est requise"),
-  });
+
 
   const handleAddTeam = (values) => {
     console.log(values);
@@ -59,8 +56,9 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
         <>
           <Formik
             initialValues={{ name: "", creationDate: "", skills: [] }}
-            validationSchema={validationSchema}
+            validationSchema={teamValidationSchema}
             onSubmit={handleAddTeam}
+
           >
             {({ setFieldValue }) => (
               <Form className="mt-8 space-y-6">

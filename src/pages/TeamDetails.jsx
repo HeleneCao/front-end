@@ -11,11 +11,13 @@ const TeamDetails = () => {
 
   const [team, setTeam] = useState(null);
     const [showModalUpdateTeam, setShowModalUpdateTeam] = useState(false);
+    const [update, setUpdate]= useState(false);
 
   
  const confirm = () => {
 
   setShowModalUpdateTeam(false);
+  setUpdate(!update)
 }
 
 const onClose = () => {
@@ -31,7 +33,7 @@ const onClose = () => {
 
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [update]);
 
   if (!team) {
     return <div>Chargement...</div>;
@@ -110,6 +112,8 @@ const onClose = () => {
                 dateCreation={team.creationDate}
                 repo={team.urlRepository}
                 backlog={team.urlBacklog}
+                uuid={team.uuid}
+                skillsTeam={team.skills}
                  />
                     </div>  
                 </div>
