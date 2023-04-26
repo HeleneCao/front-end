@@ -4,12 +4,12 @@ import apiBackEnd from "../service/api.Backend";
 import * as Yup from "yup";
 
 const ModalInternAdd = ({ isOpen, onClose, confirm }) => {
+  
 
   const validationSchema = Yup.object().shape({
     lastName: Yup.string().required("Le nom est requis"),
     firstName: Yup.string().required("Le prénom est requis"),
-    email: Yup.string().required("L'email est requis"),
-    arrivalDate: Yup.date().required("La date entrée est requise")
+    email: Yup.string().required("L'email est requis")
   });
 
   const handleAddIntern = (values) => {
@@ -18,8 +18,7 @@ const ModalInternAdd = ({ isOpen, onClose, confirm }) => {
     const internDto = {
       lastName: values.lastName,
       firstName: values.firstName,
-      email: values.email,
-      arrivalDate: values.arrivalDate
+      email: values.email
     };
 
     apiBackEnd
@@ -40,7 +39,7 @@ const ModalInternAdd = ({ isOpen, onClose, confirm }) => {
       {isOpen ? (
         <>
           <Formik
-            initialValues={{ lastName: "", firstName: "", email: "", arrivalDate: "" }}
+            initialValues={{ lastName: "", firstName: "", email: "" }}
             validationSchema={validationSchema}
             onSubmit={handleAddIntern}
           >
@@ -55,10 +54,10 @@ const ModalInternAdd = ({ isOpen, onClose, confirm }) => {
                       </h2>
                     </div>
 
-                    <div className="pl-10 mt-5">
+                    <div className="pl-10 mt-9">
                       <div className="">
                         <Field
-                          className="border-2 border-grey-800  rounded-full p-1 px-5"
+                          className="border-2 border-grey-800  rounded-full p-1 px-7"
                           type="text"
                           name="lastName"
                           id="lastName"
@@ -75,7 +74,7 @@ const ModalInternAdd = ({ isOpen, onClose, confirm }) => {
                     <div className="pl-10 mt-5">
                       <div className="">
                         <Field
-                          className="border-2 border-grey-800  rounded-full p-1 px-5"
+                          className="border-2 border-grey-800  rounded-full p-1 px-7"
                           type="text"
                           name="firstName"
                           id="firstName"
@@ -92,7 +91,7 @@ const ModalInternAdd = ({ isOpen, onClose, confirm }) => {
                    <div className="pl-10 mt-5">
                       <div className="">
                         <Field
-                          className="border-2 border-grey-800  rounded-full p-1 px-5"
+                          className="border-2 border-grey-800  rounded-full p-1 px-7"
                           type="text"
                           name="email"
                           id="email"
@@ -104,42 +103,25 @@ const ModalInternAdd = ({ isOpen, onClose, confirm }) => {
                           )}
                         </ErrorMessage>
                       </div>
-                   </div>
-
-                   <div className="pl-10 mt-5">
-                        <label
-                          className="block text-gray-800 mb-2"
-                          htmlFor="arrivalDate"
-                        >
-                          Date entrée:
-                        </label>
-                        <Field
-                          name="arrivalDate"
-                          type="date"
-                          className="border-2 border-grey-800  rounded-full p-1 px-5"
-                        />
-                        <ErrorMessage name="arrivalDate">
-                          {(msg) => (
-                            <div className="text-red-600 text-sm">{msg}</div>
-                          )}
-                        </ErrorMessage>
-                      </div>
+                   </div>                    
                     
-                    
-                    <div className="flex justify-end mt-5">
+                    <div className="mt-9">
+                   <div className="flex justify-between ">
                       <button
-                        className="border-2 border-blue-500 rounded-full p-1 px-5 font-bold"
+                        className="border-2 border-blue-100 rounded-full p-1 px-5 font-bold "
                         onClick={onClose}
-                      >
-                        Annuler
+                      >Annuler
                       </button>
+                     
                       <button
                         type="submit"
-                        className=" border-2 border-blue-500 rounded-full p-1 px-5 font-bold"
-                      >
-                        Ajouter
-                      </button>
+                        className=" border-2 border-blue-500 rounded-full p-1 px-5 font-bold "
+                      >Ajouter
+                      </button>                
                     </div>
+                    </div>
+
+
                   </div>
                   </div>
               </Form>

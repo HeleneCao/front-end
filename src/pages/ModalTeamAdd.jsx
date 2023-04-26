@@ -74,7 +74,7 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
                     <div className="p-10">
                       <div className="mb-4">
                         <Field
-                          className="border-2 border-grey-800  rounded-full p-1 px-5"
+                          className="border-2 border-grey-800  rounded-full p-1 px-10"
                           type="text"
                           name="name"
                           id="team-name"
@@ -115,7 +115,7 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
                         <Field
                           name="creationDate"
                           type="date"
-                          className="border-2 border-grey-800  rounded-full p-1 px-5"
+                          className="border-2 border-grey-800  rounded-full p-1 px-16"
                         />
                         <ErrorMessage name="creationDate">
                           {(msg) => (
@@ -125,20 +125,20 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
                       </div>
                     </div>
 
-                    <div className="flex justify-end">
+                    <div className="flex justify-between">
                       <button
-                        className="border-2 border-blue-500 rounded-full p-1 px-5 font-bold"
+                        className="border-2 border-blue-100 rounded-full p-1 px-5 font-bold "
                         onClick={onClose}
-                      >
-                        Annuler
+                      >Annuler
                       </button>
+                     
                       <button
                         type="submit"
-                        className=" border-2 border-blue-500 rounded-full p-1 px-5 font-bold"
-                      >
-                        Ajouter
-                      </button>
+                        className=" border-2 border-blue-500 rounded-full p-1 px-5 font-bold "
+                      >Ajouter
+                      </button>                
                     </div>
+
                   </div>
                 </div>
               </Form>
