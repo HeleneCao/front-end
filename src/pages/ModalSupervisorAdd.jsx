@@ -1,10 +1,13 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { roleService } from "../service/role.service";
+import Select from "react-select";
 import apiBackEnd from "../service/api.Backend";
 import * as Yup from "yup";
 
 const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
-
+  const [roles, setRoles] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const validationSchema = Yup.object().shape({
     lastName: Yup.string().required("Le nom est requis"),
@@ -16,15 +19,16 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
   const handleAddSupervisor = (values) => {
     console.log(values);
 
-    const supervisorDto = {
+    const supervisorPostDto = {
       lastName: values.lastName,
       firstName: values.firstName,
+      role: values.roles.value,
       email: values.email,
       password: values.password
     };
 
     apiBackEnd
-      .post("/api/supervisor/register", supervisorDto)
+      .post("/api/supervisor/admin/register", supervisorPostDto)
       .then((response) => {
         console.log(response.data);
         confirm();
@@ -34,16 +38,35 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
       });
   };
 
+  useEffect(() => {
+    roleService
+      .getAllRoles()
+      .then((res) => {
+        setRoles(
+          res.data.content.map((role) => {
+            return {
+              value: role.name,
+              label: role.name,
+            };
+          })
+        );
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(roles);
+
+
   return (
     <>
       {isOpen ? (
         <>
           <Formik
-            initialValues={{ last_name: "", first_name: "", email: "", password: "" }}
+            initialValues={{ last_name: "", first_name: "", roles: [], email: "", password: "" }}
             validationSchema={validationSchema}
             onSubmit={handleAddSupervisor}
           >
-            {({ isSubmitting, setFieldValue }) => (
+            {({ setFieldValue }) => (
               <Form className="mt-8 space-y-6">
                 <div className="fixed inset-0 bg-black opacity-50 z-40"></div>
                 <div className="fixed inset-0 z-50 flex justify-center items-center">
@@ -54,10 +77,10 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
                       </h2>
                     </div>
 
-                    <div className="pl-10 mt-5">
+                    <div className="pl-10 mt-9">
                       <div className="">
                         <Field
-                          className="border-2 border-grey-800  rounded-full p-1 px-5"
+                          className="border-2 border-grey-800  rounded-full p-1 px-7"
                           type="text"
                           name="lastName"
                           id="lastName"
@@ -74,7 +97,7 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
                     <div className="pl-10 mt-5">
                       <div className="">
                         <Field
-                          className="border-2 border-grey-800  rounded-full p-1 px-5"
+                          className="border-2 border-grey-800  rounded-full p-1 px-7"
                           type="text"
                           name="firstName"
                           id="firstName"
@@ -91,7 +114,7 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
                     <div className="pl-10 mt-5">
                       <div className="">
                         <Field
-                          className="border-2 border-grey-800  rounded-full p-1 px-5"
+                          className="border-2 border-grey-800  rounded-full p-1 px-7"
                           type="text"
                           name="email"
                           id="email"
@@ -108,7 +131,7 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
                     <div className="pl-10 mt-5">
                       <div className="">
                         <Field
-                          className="border-2 border-grey-800  rounded-full p-1 px-5"
+                          className="border-2 border-grey-800  rounded-full p-1 px-7"
                           id="password"
                           name="password"
                           type="password"
@@ -121,22 +144,42 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
                         </ErrorMessage>
                       </div>
                     </div>
-                    
 
-                    <div className="flex justify-end mt-5" >
+                    <div className="pl-10 mt-4">
+                        <label
+                          className="block text-gray-800 mb-2"
+                          htmlFor="role"
+                        >
+                          Role:
+                        </label>
+                        <div>
+                          <Select
+                          className="mr-14"
+                            name="roles"
+                            defaultValue={selectedOption}
+                            onChange={(value) => setFieldValue("roles", value)}
+                            options={roles}
+                          />
+                        </div>
+                      </div>
+                    
+                    <div className="mt-9">
+                    <div className="flex justify-between">
                       <button
-                        className="border-2 border-blue-500 rounded-full p-1 px-5 font-bold "
+                        className="border-2 border-blue-100 rounded-full p-1 px-5 font-bold "
                         onClick={onClose}
-                      >
-                        Annuler
+                      >Annuler
                       </button>
+                     
                       <button
                         type="submit"
-                        className=" border-2 border-blue-500 rounded-full p-1 px-5 font-bold"
-                      >
-                        Ajouter
-                      </button>
+                        className=" border-2 border-blue-500 rounded-full p-1 px-5 font-bold "
+                      >Ajouter
+                      </button>                
                     </div>
+                    </div>
+
+
                   </div>
                 </div>
               </Form>

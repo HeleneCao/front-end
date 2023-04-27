@@ -1,8 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import {supervisorService} from "../service/supervisor.service.jsx";
 import ModalSupervisorAdd from './ModalSupervisorAdd.jsx';
-import {Link, useNavigate} from 'react-router-dom';
-
 
 const ManagementSupervisors = () => {
 
@@ -57,7 +55,7 @@ console.log(supervisors)
                             <td className="text-center">
                                 <button>
                                     <img
-                                        src="src\images\Vector.png"
+                                        src={LogoArchive}
                                         alt="Bouton archivé"
                                         className="h-3 w-auto mr-2"
                                     />

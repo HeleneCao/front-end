@@ -104,14 +104,16 @@ console.log(uuid)
               </div>
 
                   <div className="mb-4">
+                    <div>
                     <label
                       className="block text-gray-800 mb-2"
                       htmlFor="language"
                     >
                       Langage utilisées:
                     </label>
+                    </div>
                     <div>
-                      <div></div>
+                      
                       <Select
                       name="skills"
                         defaultValue={values.skills}
@@ -162,9 +164,9 @@ console.log(uuid)
 
               </div>
             
-              <div className="flex justify-end">
+              <div className="flex justify-between">
                 <button
-                  className= "border-2 border-blue-500 rounded-full p-1 px-5 font-bold"
+                  className= "border-2 border-blue-100 rounded-full p-1 px-5 font-bold"
                   onClick={onClose}
                 >
                   Annuler

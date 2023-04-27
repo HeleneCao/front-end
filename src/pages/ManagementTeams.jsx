@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {teamService} from "../service/team.service.jsx";
 import {Link, useNavigate} from 'react-router-dom';
 import ModalTeamAdd from './ModalTeamAdd.jsx';
+import LogoArchive from "./../images/Vector.png";
 
 
 const ManagementTeams = () => {
@@ -67,7 +68,7 @@ const ManagementTeams = () => {
                                 <td className="text-center">
                                     <button>
                                         <img
-                                            src="src\images\Vector.png"
+                                            src={LogoArchive}
                                             alt="Bouton archivé"
                                             className="h-3 w-auto mr-2"
                                         />
