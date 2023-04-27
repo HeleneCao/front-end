@@ -24,10 +24,6 @@ const ModalUpdateTeam = ({
   const [teamRepository, setTeamRepository] = useState("");
   const [teamBacklog, setTeamBacklog] = useState("");
 
-
-
-
-
    const handleUpdateTeam = (values) => {
     console.log(values);
 

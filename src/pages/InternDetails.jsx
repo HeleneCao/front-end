@@ -1,6 +1,9 @@
 import React from 'react'
 
+
+
 const InternDetails = () => {
+
   return (
     <div>
       InternDetails

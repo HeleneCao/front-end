@@ -32,6 +32,8 @@ const ManagementTeams = () => {
      setShowModalTeamAdd(false);
  }
 
+ console.log(teams)
+
  
     return (
         <div className="p-28">

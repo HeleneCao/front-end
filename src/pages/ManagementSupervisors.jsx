@@ -1,6 +1,8 @@
 import React, {useState,useEffect} from 'react';
 import {supervisorService} from "../service/supervisor.service.jsx";
 import ModalSupervisorAdd from './ModalSupervisorAdd.jsx';
+import {Link, useNavigate} from 'react-router-dom';
+
 
 const ManagementSupervisors = () => {
 
@@ -29,12 +31,15 @@ const onClose = () => {
     setShowModalSupervisorAdd(false);
 }
 
+console.log(supervisors)
+
+
     return (
         <div className="p-28">
             <div className="overflow-x-auto">
                 <div className="p-3 bg-blue-500 text-center border border-blue-500 rounded-t-2xl">
                     <h2 className="font-mono not-italic font-bold text-2xl leading-9 text-white">Liste des
-                        Responsable</h2>
+                     responsables</h2>
                 </div>
                 <table className="w-full border border-slate-300">
                     {/* head */}
@@ -45,10 +50,10 @@ const onClose = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {supervisors.map((supervisor , index) => (
-                        <tr key={index}>
-                            <td>{supervisor.lastName}</td>
-                            <td>{supervisor.firstName}</td>
+                    {supervisors.map((supervisor,index) =>  (
+                        <tr key={index}>        
+                            <td><Link to={`/gestionResponsables/detail/${supervisor.uuid}`}>{supervisor.lastName}</Link></td>
+                            <td><Link to={`/gestionResponsables/detail/${supervisor.uuid}`}>{supervisor.firstName}</Link></td>
                             <td className="text-center">
                                 <button>
                                     <img

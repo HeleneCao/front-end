@@ -4,6 +4,7 @@ import {internService} from "../service/intern.service.jsx";
 const ManagementInterns = () => {
 
     const [interns,setInterns] =useState([]);
+    
 
     useEffect(() => {
     internService.getAllInterns()
