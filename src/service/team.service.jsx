@@ -13,6 +13,17 @@ let updateByUuid = (uuid) => {
     return apiBackEnd.put(`/api/team/uuid/${uuid}`)
 }
 
+let archiveByUuid = (uuid)=> {
+    return apiBackEnd.put(`api/team/archive/${uuid}`)
+}
+
+let removeInternByUuid = (uuidIntern,uuidTeam) => {
+    return apiBackEnd.put(`api/team/${uuidTeam}/remove/intern/${uuidIntern}`)
+}
+
+
+
+
 export const teamService = {
-    getAllTeams,getTeamByUuid, updateByUuid
+    getAllTeams,getTeamByUuid, updateByUuid,archiveByUuid,removeInternByUuid
 }
