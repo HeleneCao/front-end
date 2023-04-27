@@ -22,6 +22,8 @@ const SupervisorDetails = () => {
   if (!supervisor) {
     return <div> Chargement ...</div>
   }
+
+  console.log(supervisor);
   
 
   return (
@@ -53,6 +55,12 @@ const SupervisorDetails = () => {
           >
             Role
           </th>
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Numero de telephone
+          </th>
         
         </tr>
       </thead>
@@ -62,7 +70,8 @@ const SupervisorDetails = () => {
           <td className="px-6 py-4 whitespace-nowrap">{supervisor.lastName}</td>
           <td className="px-6 py-4 whitespace-nowrap">{supervisor.firstName}</td>
           <td className="px-6 py-4 whitespace-nowrap">{supervisor.email}</td>
-          {/* <td className="px-6 py-4 whitespace-nowrap">{supervisor.roleName}</td> */}
+          <td className="px-6 py-4 whitespace-nowrap">{supervisor.roleName}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{supervisor.number}</td>
         </tr>
       </tbody>
     </table>

@@ -25,6 +25,7 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
       role: values.roles.value,
       email: values.email,
       password: values.password
+      
     };
 
     apiBackEnd
