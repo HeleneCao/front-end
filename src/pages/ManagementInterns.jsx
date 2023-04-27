@@ -2,10 +2,13 @@ import React, {useState,useEffect} from "react";
 import {internService} from "../service/intern.service.jsx";
 import LogoArchive from "./../images/Vector.png";
 import ModalInternAdd from "./ModalInternAdd.jsx";
+import {Link} from "react-router-dom";
 
 const ManagementInterns = () => {
 
     const [interns,setInterns] =useState([]);
+    const [update, setUpdate]= useState(false);
+    const [showModalInternAdd, setShowModalInternAdd] = useState(false);
 
     useEffect(() => {
     internService.getAllInterns()
@@ -48,9 +51,9 @@ const ManagementInterns = () => {
                     <tbody>
                     {interns.map((intern,index) => (
                         <tr key={index}>
-                            <td>{intern.lastName}</td>
-                            <td>{intern.firstName}</td>
-                            <td>{intern.nomTeam.join(" - ")}</td>
+                            <td><Link to={`/gestionStagiaires/detail/${intern.uuid}`}>{intern.lastName}</Link></td>
+                            <td><Link to={`/gestionStagiaires/detail/${intern.uuid}`}>{intern.firstName}</Link></td>
+                            <td><Link to={`/gestionStagiaires/detail/${intern.uuid}`}>{intern.nomTeam.join(" - ")}</Link></td>
                             <td className="text-center">
                                 <button>
                                     <img

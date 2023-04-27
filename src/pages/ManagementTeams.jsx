@@ -71,6 +71,7 @@ const ManagementTeams = () => {
                                             src={LogoArchive}
                                             alt="Bouton archivé"
                                             className="h-3 w-auto mr-2"
+                                            onClick={() => teamService.archiveByUuid(team.uuid)}
                                         />
                                     </button>
                                 </td>
