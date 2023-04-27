@@ -6,6 +6,7 @@ import ModalInternAdd from "./ModalInternAdd.jsx";
 const ManagementInterns = () => {
 
     const [interns,setInterns] =useState([]);
+    const [showModalInternAdd, setShowModalInternAdd] = useState(false);
 
     useEffect(() => {
     internService.getAllInterns()
