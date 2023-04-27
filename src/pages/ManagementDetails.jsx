@@ -47,7 +47,7 @@ return (
       </tr>
     </thead>
     <tbody className="bg-white divide-y divide-gray-200">
-      <tr key={team.uuid}>
+      <tr key={management.uuid}>
         <td className="px-6 py-4 whitespace-nowrap">{management.lastName}</td>
         <td className="px-6 py-4 whitespace-nowrap">{management.firstName}</td>
         <td className="px-6 py-4 whitespace-nowrap">{management.email}</td>

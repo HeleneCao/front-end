@@ -1,6 +1,10 @@
 import React, {useState,useEffect} from 'react';
 import {supervisorService} from "../service/supervisor.service.jsx";
 import ModalSupervisorAdd from './ModalSupervisorAdd.jsx';
+import {Link, useNavigate} from 'react-router-dom';
+import LogoArchive from "./../images/Vector.png";
+
+
 
 const ManagementSupervisors = () => {
 
