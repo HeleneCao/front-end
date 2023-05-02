@@ -17,7 +17,7 @@ const ManagementInterns = () => {
         })
         .catch(err => console.log(err))
     }, []);
-    console.log(interns);
+
 
     const confirm = () => {
 

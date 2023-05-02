@@ -13,7 +13,7 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
 
 
   const handleAddTeam = (values) => {
-    console.log(values);
+
 
     const teamDto = {
       name: values.name,
@@ -24,7 +24,7 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
     apiBackEnd
       .post("/api/team/register", teamDto)
       .then((response) => {
-        console.log(response.data);
+
         confirm();
       })
       .catch((error) => {
@@ -48,7 +48,7 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(skills);
+
 
   return (
     <>

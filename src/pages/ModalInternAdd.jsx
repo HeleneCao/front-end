@@ -13,7 +13,7 @@ const ModalInternAdd = ({ isOpen, onClose, confirm }) => {
   });
 
   const handleAddIntern = (values) => {
-    console.log(values);
+
 
     const internDto = {
       lastName: values.lastName,
@@ -24,7 +24,7 @@ const ModalInternAdd = ({ isOpen, onClose, confirm }) => {
     apiBackEnd
       .post("/api/intern/register", internDto)
       .then((response) => {
-        console.log(response.data);
+
         confirm();
       })
       .catch((error) => {

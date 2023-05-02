@@ -24,7 +24,7 @@ const LoginForm = () => {
           values
         );
         setToken(response.data.token);
-        console.log(getToken());
+
           navigate("/");
 
       } catch (error) {
