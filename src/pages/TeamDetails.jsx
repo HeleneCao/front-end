@@ -9,7 +9,7 @@ import { reviewService } from "../service/review.service";
 
 const TeamDetails = () => {
   let { uuid } = useParams();
-  console.log(uuid);
+
 
   const [team, setTeam] = useState(null);
     const [showModalUpdateTeam, setShowModalUpdateTeam] = useState(false);
@@ -44,6 +44,16 @@ const onClose = () => {
     return <div>Chargement...</div>;
   }
 
+const handleRemoveInternTeam = (uuidTeam,uuidIntern) => {
+    teamService.removeInternByUuid(uuidTeam, uuidIntern);
+    setTeam((prevTeam) => {
+        const cloneTeam = {...prevTeam}
+        let interns = cloneTeam.interns;
+        interns = interns.filter((i) => i.uuid !== uuidIntern)
+        cloneTeam.interns = interns;
+        return cloneTeam;
+    })
+}
 
 
   return (
@@ -205,7 +215,7 @@ const onClose = () => {
                       src={LogoArchive}
                       alt="Bouton archivé"
                       className="h-3 w-auto mr-2"
-                      onClick={() => teamService.removeInternByUuid(team.uuid,intern.uuid)}
+                      onClick={() => handleRemoveInternTeam(team.uuid,intern.uuid)}
                   />
                 </button>
               </td>

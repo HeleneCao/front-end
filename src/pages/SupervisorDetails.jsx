@@ -5,7 +5,7 @@ import { supervisorService } from "../service/supervisor.service";
 
 const SupervisorDetails = () => {
   let {uuid} = useParams();
-  console.log(uuid);
+
 
   const[supervisor, setSupervisor] = useState(null);
 
@@ -13,7 +13,7 @@ const SupervisorDetails = () => {
     supervisorService
       .getSupervisorByUuid(uuid)
       .then((res) => {
-        console.log(res.data);
+
         setSupervisor(res.data);
       })
       .catch((err) => console.log(err));
@@ -23,7 +23,7 @@ const SupervisorDetails = () => {
     return <div> Chargement ...</div>
   }
 
-  console.log(supervisor);
+
   
 
   return (
