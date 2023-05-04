@@ -16,6 +16,7 @@ const TeamDetails = () => {
     const [showModalAddReviewTeam, setShowModalAddReviewTeam] = useState(false);
     const [showModalAddInternTeam, setShowModalAddInternTeam] = useState(false);
     const [update, setUpdate]= useState(false);
+    const [dateFr, setDateFr] = useState("");
 
   
  const confirm = () => {
@@ -38,15 +39,14 @@ const onClose = () => {
       .then(res => {
         console.log(res.data);
         setTeam(res.data);
-
+        setDateFr(new Date(res.data.creationDate).toLocaleString('en-GB', { timeZone: 'UTC' }).slice(0, 10))
+        
+        
       })
       .catch(err => console.log(err))
-    }, [update]);
+    }, [update, dateFr]);
 
-  if (!team) {
-    return <div>Chargement...</div>;
-  }
-
+  
 const handleRemoveInternTeam = (uuidTeam,uuidIntern) => {
     teamService.removeInternByUuid(uuidTeam, uuidIntern);
     setTeam((prevTeam) => {
@@ -58,6 +58,9 @@ const handleRemoveInternTeam = (uuidTeam,uuidIntern) => {
     })
 }
 
+if (!team) {
+  return <div>Chargement...</div>;
+}
 
   return (
       <div>
@@ -107,7 +110,7 @@ const handleRemoveInternTeam = (uuidTeam,uuidIntern) => {
           <td className="px-6 py-4 whitespace-nowrap">{team.name}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.skills.map((skill) => skill.label).join(" - ")}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.interns.length}</td>
-          <td className="px-6 py-4 whitespace-nowrap">{format(new Date(team.creationDate), 'dd-MM-yyyy')}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{dateFr}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.urlRepository}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.urlBacklog}</td>
         </tr>

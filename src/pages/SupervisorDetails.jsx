@@ -1,13 +1,28 @@
 import React, { useEffect, useState } from "react";
 import {Link, useParams} from "react-router-dom";
 import { supervisorService } from "../service/supervisor.service";
-
+import LogoArchive from "./../images/Vector.png";
+import ModalUpdateSupervisor from "./ModalUpdateSupervisor.jsx";
 
 const SupervisorDetails = () => {
-  let {uuid} = useParams();
-
+  let { uuid } = useParams();
+  console.log(uuid);
 
   const[supervisor, setSupervisor] = useState(null);
+  const [showModalUpdateSupervisor, setShowModalUpdateSupervisor] = useState(false);
+  const [update, setUpdate]= useState(false);
+
+
+const confirm = () => {
+
+setShowModalUpdateSupervisor(false);
+setUpdate(!update)
+}
+
+const onClose = () => {
+setShowModalUpdateSupervisor(false);
+}
+  
 
   useEffect(() => {
     supervisorService
@@ -17,12 +32,11 @@ const SupervisorDetails = () => {
         setSupervisor(res.data);
       })
       .catch((err) => console.log(err));
-    }, []);
+    }, [update]);
   
   if (!supervisor) {
     return <div> Chargement ...</div>
   }
-
 
   
 
@@ -61,6 +75,12 @@ const SupervisorDetails = () => {
           >
             Numero de telephone
           </th>
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Language(s)
+          </th>
         
         </tr>
       </thead>
@@ -72,9 +92,33 @@ const SupervisorDetails = () => {
           <td className="px-6 py-4 whitespace-nowrap">{supervisor.email}</td>
           <td className="px-6 py-4 whitespace-nowrap">{supervisor.roleName}</td>
           <td className="px-6 py-4 whitespace-nowrap">{supervisor.number}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{supervisor.skills.map((skill) => skill.label).join(" - ")}</td>
+
         </tr>
       </tbody>
     </table>
+    <div className="p-7 grid place-items-end">
+                    <button
+                        className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end"
+                        onClick={() => {setShowModalUpdateSupervisor(true)}}>
+                        Modifier le supervisor
+                    </button>
+    </div>
+    <div>
+                    <div>
+                <ModalUpdateSupervisor isOpen={showModalUpdateSupervisor}
+                confirm={confirm}
+                onClose={onClose}
+                uuid={supervisor.uuid}
+                nomSupervisor={supervisor.lastName}
+                prenomSupervisor={supervisor.firstName}
+                email={supervisor.email}
+                role={supervisor.role}
+                numero={supervisor.number}
+                skillsSupervisor={supervisor.skills}
+                 />
+                    </div>  
+                </div>
     </div>
   )
 }

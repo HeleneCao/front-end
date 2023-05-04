@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { skillService } from "../service/skill.service";
 import Select from "react-select";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 import apiBackEnd from "../service/api.Backend";
 import { updateTeamValidationSchema } from "../constants/yupConstants";
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
 const ModalUpdateTeam = ({
+  
   isOpen,
   onClose,
   confirm,
@@ -31,6 +32,7 @@ const ModalUpdateTeam = ({
       name: values.name,
       urlBacklog: values.urlBacklog,
       urlRepository: values.urlRepository,
+      creationDate: values.creationDate,
       skills: values.skills.map((option) => option.value),
     };
 
@@ -47,7 +49,7 @@ const ModalUpdateTeam = ({
   };
 
   useEffect(() => {
-    setTeamName;
+    setTeamName();
     skillService
       .getAllSkills()
       .then((res) => {
@@ -124,17 +126,18 @@ const ModalUpdateTeam = ({
                     </div>
                   </div>
 
-              {/* <div className="mb-4">
-                <input
+              <div className="mb-4">
+                <Field
                   className="border-2 border-grey-800  rounded-full p-1 px-5 w-full"
                   type="text"
                   id="date-creation"
                   placeholder="team-Date de creation"
-                  value={dateCreation}
-                  onChange={(e) => setTeamCreationDate(e.target.value)}
+                  name="dateCreation"
+                  // value={dateCreation}
+                  // onChange={(e) => setTeamCreationDate(e.target.value)}
                   
                 />
-              </div> */}
+              </div>
 
               <div className="mb-4">
                 <Field
@@ -159,8 +162,6 @@ const ModalUpdateTeam = ({
                   
                 />
               </div>
-
-             
 
               </div>
             

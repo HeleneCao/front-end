@@ -15,6 +15,8 @@ import SupervisorDetails from "./pages/SupervisorDetails.jsx";
 import ModalTeamAdd from "./pages/ModalTeamAdd.jsx";
 import ModalSupervisorAdd from "./pages/ModalSupervisorAdd.jsx";
 import ModalInternAdd from "./pages/ModalInternAdd.jsx";
+import ModalUpdateSupervisor from "./pages/ModalUpdateSupervisor.jsx";
+import ModalUpdateTeam from "./pages/ModalUpdateTeam.jsx";
 
 
 
@@ -42,12 +44,12 @@ function App() {
               <Route path="/gestionEquipes" element={<ManagementTeams/>} />
               <Route path="/gestionEquipes/detail/:uuid" element={<TeamDetails/>}/>
               <Route path="/gestionEquipes/create" element={<ModalTeamAdd/>}/>
-              <Route path="/gestionEquipes/update" element/>
+              <Route path="/gestionEquipes/update" element={<ModalUpdateTeam/>}/>
               
               <Route path="/gestionResponsables" element={<ManagementSupervisors/>}/>
               <Route path="/gestionResponsables/detail/:uuid" element={<SupervisorDetails/>}/>
               <Route path="/gestionResponsables/create" element={<ModalSupervisorAdd/>}/>
-              <Route path="/gestionResponsables/update" element/>
+              <Route path="/gestionResponsables/update" element={<ModalUpdateSupervisor/>}/>
             
             </Route>
             <Route path="/login" element={<LoginPage/>}/>
