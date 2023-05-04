@@ -26,7 +26,7 @@ const ModalUpdateTeam = ({
   const [teamBacklog, setTeamBacklog] = useState("");
 
    const handleUpdateTeam = (values) => {
-    console.log(values);
+
 
     const teamDto = {
       name: values.name,
@@ -36,11 +36,11 @@ const ModalUpdateTeam = ({
       skills: values.skills.map((option) => option.value),
     };
 
-console.log(uuid)
+
     apiBackEnd
     .put(`/api/team/update/${uuid}`, teamDto)
     .then((response) => {
-      console.log(response.data);
+
       confirm();
     })
     .catch((error) => {
@@ -65,7 +65,7 @@ console.log(uuid)
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(skills);
+
 
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -74,7 +74,7 @@ console.log(uuid)
       {isOpen ? (
         <>
         <Formik
-          initialValues={{name: nomTeam, skills: skillsTeam,urlBacklog: backlog, urlRepository: repo, creationDate: dateCreation }}
+          initialValues={{name: nomTeam, skills: skillsTeam.map((s) => {return { label : s.label , value :s.label }}),urlBacklog: backlog, urlRepository: repo }}
           validationSchema={updateTeamValidationSchema}
           onSubmit={handleUpdateTeam}
           >

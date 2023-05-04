@@ -28,7 +28,7 @@ setShowModalUpdateSupervisor(false);
     supervisorService
       .getSupervisorByUuid(uuid)
       .then((res) => {
-        console.log(res.data);
+
         setSupervisor(res.data);
       })
       .catch((err) => console.log(err));

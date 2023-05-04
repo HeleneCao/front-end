@@ -20,7 +20,7 @@ const ManagementTeams = () => {
     },[update]);
 
     
- console.log(teams);
+
  
  const confirm = () => {
 
@@ -33,7 +33,12 @@ const ManagementTeams = () => {
      setShowModalTeamAdd(false);
  }
 
- console.log(teams)
+ const handleArchiveTeam = (uuid) => {
+     teamService.archiveByUuid(uuid)
+     setTeams((prevTeams) => teams.filter((team) => team.uuid !== uuid))
+ }
+
+
 
  
     return (
@@ -71,7 +76,7 @@ const ManagementTeams = () => {
                                             src={LogoArchive}
                                             alt="Bouton archivé"
                                             className="h-3 w-auto mr-2"
-                                            onClick={() => teamService.archiveByUuid(team.uuid)}
+                                            onClick={() => handleArchiveTeam(team.uuid)}
                                         />
                                     </button>
                                 </td>

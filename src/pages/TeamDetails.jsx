@@ -4,13 +4,16 @@ import {Link, useParams} from "react-router-dom";
 import ModalUpdateTeam from './ModalUpdateTeam.jsx'
 import { compareAsc, format } from 'date-fns';
 import LogoArchive from "./../images/Vector.png";
+import ModalAddReviewTeam from './ModalAddReviewTeam';
+import { reviewService } from "../service/review.service";
 
 const TeamDetails = () => {
   let { uuid } = useParams();
-  console.log(uuid);
+
 
   const [team, setTeam] = useState(null);
     const [showModalUpdateTeam, setShowModalUpdateTeam] = useState(false);
+    const [showModalAddReviewTeam, setShowModalAddReviewTeam] = useState(false);
     const [update, setUpdate]= useState(false);
     const [dateFr, setDateFr] = useState("");
 
@@ -18,32 +21,43 @@ const TeamDetails = () => {
  const confirm = () => {
 
   setShowModalUpdateTeam(false);
+  setShowModalAddReviewTeam(false);
   setUpdate(!update)
 }
 
 const onClose = () => {
   setShowModalUpdateTeam(false);
+  setShowModalAddReviewTeam(false);
 }
 
   useEffect(() => { 
     teamService
       .getTeamByUuid(uuid)
-      .then((res) => {
+      .then(res => {
         console.log(res.data);
         setTeam(res.data);
         setDateFr(new Date(res.data.creationDate).toLocaleString('en-GB', { timeZone: 'UTC' }).slice(0, 10))
         
         
       })
-      .catch((err) => console.log(err));
-    }, [update,dateFr]);
-    
-    if (!team) {
-      return <div>Chargement...</div>;
-    }
-    
-    console.log(dateFr);
+      .catch(err => console.log(err))
+    }, [update, dateFr]);
 
+  
+const handleRemoveInternTeam = (uuidTeam,uuidIntern) => {
+    teamService.removeInternByUuid(uuidTeam, uuidIntern);
+    setTeam((prevTeam) => {
+        const cloneTeam = {...prevTeam}
+        let interns = cloneTeam.interns;
+        interns = interns.filter((i) => i.uuid !== uuidIntern)
+        cloneTeam.interns = interns;
+        return cloneTeam;
+    })
+}
+
+if (!team) {
+  return <div>Chargement...</div>;
+}
 
   return (
       <div>
@@ -121,7 +135,7 @@ const onClose = () => {
                  />
                     </div>  
                 </div>
-          <div className="mx-96 my-10">
+          <div className="mx-10 my-10">
             <div className="overflow-x-auto">
                 <div className="p-3 bg-blue-500 text-center border border-blue-500 rounded-t-2xl">
                     <h2 className="font-mono not-italic font-bold text-2xl leading-9 text-white">Commentaires Review</h2>
@@ -148,9 +162,20 @@ const onClose = () => {
                 </table>
                 <div className="p-7 grid place-items-end">
                     <button
-                        className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end">
+                        className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end"
+                        onClick={() => {setShowModalAddReviewTeam(true)}}>
                         Ajouter un commentaire
                     </button>
+                </div>
+
+                <div>
+                  <div>
+                    <ModalAddReviewTeam isOpen={showModalAddReviewTeam}
+                    uuidTeam={team.uuid}
+                   confirm={confirm}
+                   onClose={onClose}
+                    />
+                  </div>
                 </div>
             </div>
           </div>
@@ -193,7 +218,7 @@ const onClose = () => {
                       src={LogoArchive}
                       alt="Bouton archivé"
                       className="h-3 w-auto mr-2"
-                      onClick={() => teamService.removeInternByUuid(team.uuid,intern.uuid)}
+                      onClick={() => handleRemoveInternTeam(team.uuid,intern.uuid)}
                   />
                 </button>
               </td>

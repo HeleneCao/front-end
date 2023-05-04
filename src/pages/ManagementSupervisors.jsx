@@ -20,7 +20,7 @@ const ManagementSupervisors = () => {
             .catch(err => console.log(err))
     }, [update]);
 
-console.log(supervisors);
+
 
 const confirm = () => {
 
@@ -33,7 +33,7 @@ const onClose = () => {
     setShowModalSupervisorAdd(false);
 }
 
-console.log(supervisors)
+
 
 
     return (

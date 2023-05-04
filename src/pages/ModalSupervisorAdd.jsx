@@ -17,7 +17,7 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
   });
 
   const handleAddSupervisor = (values) => {
-    console.log(values);
+
 
     const supervisorPostDto = {
       lastName: values.lastName,
@@ -31,7 +31,7 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
     apiBackEnd
       .post("/api/supervisor/admin/register", supervisorPostDto)
       .then((response) => {
-        console.log(response.data);
+
         confirm();
       })
       .catch((error) => {
@@ -55,7 +55,7 @@ const ModalSupervisorAdd = ({ isOpen, onClose, confirm }) => {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(roles);
+
 
 
   return (

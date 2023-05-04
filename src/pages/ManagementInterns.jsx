@@ -16,7 +16,7 @@ const ManagementInterns = () => {
             setInterns(res.data.content)
         })
         .catch(err => console.log(err))
-    }, []);
+    }, [update]);
     console.log(interns);
 
     const confirm = () => {
