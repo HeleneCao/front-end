@@ -2,7 +2,7 @@ import React, {useState,useEffect} from "react";
 import {internService} from "../service/intern.service.jsx";
 import LogoArchive from "./../images/Vector.png";
 import ModalInternAdd from "./ModalInternAdd.jsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from 'react-router-dom';
 
 const ManagementInterns = () => {
 

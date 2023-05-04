@@ -49,6 +49,7 @@ console.log(supervisors)
                     <tr>
                         <th  scope="col">Nom</th>
                         <th scope="col">Prénom</th>
+                        <th scope="col">Langage</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,6 +57,7 @@ console.log(supervisors)
                         <tr key={index}>        
                             <td><Link to={`/gestionResponsables/detail/${supervisor.uuid}`}>{supervisor.lastName}</Link></td>
                             <td><Link to={`/gestionResponsables/detail/${supervisor.uuid}`}>{supervisor.firstName}</Link></td>
+                            <td><Link to={`/gestionResponsables/detail/${supervisor.uuid}`}>{supervisor.skills.map((skill) => skill.label).join(" - ")}</Link></td>
                             <td className="text-center">
                                 <button>
                                     <img

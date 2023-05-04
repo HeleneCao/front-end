@@ -10,9 +10,9 @@ let getInternByUuid = (uuid) =>{
 }
 
 let updateByUuid = (uuid) => {
-    return apiBackEnd.put(`/api/intern/uuid/${uuid}`)
+    return apiBackEnd.put(`/api/intern/update/${uuid}`)
 }
 
 export const internService = {
-    getAllInterns, getInternByUuid
+    getAllInterns, getInternByUuid, updateByUuid
 }
