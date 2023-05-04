@@ -4,8 +4,8 @@ import {Link, useParams} from "react-router-dom";
 import ModalUpdateTeam from './ModalUpdateTeam.jsx'
 import { compareAsc, format } from 'date-fns';
 import LogoArchive from "./../images/Vector.png";
-import ModalAddReviewTeam from './ModalAddReviewTeam';
-import { reviewService } from "../service/review.service";
+import ModalAddInternTeam from "./ModalAddInternTeam.jsx";
+import ModalAddReviewTeam from "./ModalAddReviewTeam.jsx";
 
 const TeamDetails = () => {
   let { uuid } = useParams();
@@ -14,6 +14,7 @@ const TeamDetails = () => {
   const [team, setTeam] = useState(null);
     const [showModalUpdateTeam, setShowModalUpdateTeam] = useState(false);
     const [showModalAddReviewTeam, setShowModalAddReviewTeam] = useState(false);
+    const [showModalAddInternTeam, setShowModalAddInternTeam] = useState(false);
     const [update, setUpdate]= useState(false);
 
   
@@ -21,12 +22,14 @@ const TeamDetails = () => {
 
   setShowModalUpdateTeam(false);
   setShowModalAddReviewTeam(false);
+  setShowModalAddInternTeam(false);
   setUpdate(!update)
 }
 
 const onClose = () => {
   setShowModalUpdateTeam(false);
   setShowModalAddReviewTeam(false);
+  setShowModalAddInternTeam(false);
 }
 
   useEffect(() => { 
@@ -135,14 +138,15 @@ const handleRemoveInternTeam = (uuidTeam,uuidIntern) => {
           <div className="mx-10 my-10">
             <div className="overflow-x-auto">
                 <div className="p-3 bg-blue-500 text-center border border-blue-500 rounded-t-2xl">
-                    <h2 className="font-mono not-italic font-bold text-2xl leading-9 text-white">Commentaires Review</h2>
+                    <h2 className="font-mono not-italic font-bold text-2xl leading-9 text-white">
+                      Reviews</h2>
                 </div>
                 <table className="w-full border-slate-300">
                     <thead className="text-left border border-t-gray-300">
                     <tr>
-                        <th scope="col">date
+                        <th scope="col">Date
                         </th>
-                        <th scope="col">comment
+                        <th scope="col">Commentaire
                         </th>
                     </tr>
                     </thead>
@@ -161,7 +165,7 @@ const handleRemoveInternTeam = (uuidTeam,uuidIntern) => {
                     <button
                         className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end"
                         onClick={() => {setShowModalAddReviewTeam(true)}}>
-                        Ajouter un commentaire
+                        Ajouter une review
                     </button>
                 </div>
 
@@ -193,7 +197,7 @@ const handleRemoveInternTeam = (uuidTeam,uuidIntern) => {
                   Prenom
              </th>
              <th scope="col">
-                 adresse mail
+                 Email
              </th>
              <th scope="col">
 
@@ -229,10 +233,22 @@ const handleRemoveInternTeam = (uuidTeam,uuidIntern) => {
   
       <div className="p-7 grid place-items-end">
         <button
-            className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end">
-          Ajouter un membre
+            className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end"
+            onClick={() => {setShowModalAddInternTeam(true)}}>
+          Ajouter un stagiaire
         </button>
       </div>
+
+      
+      <div>
+                  <div>
+                    <ModalAddInternTeam isOpen={showModalAddInternTeam}
+                    uuidTeam={team.uuid}
+                   confirm={confirm}
+                   onClose={onClose}
+                    />
+                  </div>
+                </div>
     </div>
     </div>
 </div>
