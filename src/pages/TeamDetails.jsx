@@ -4,6 +4,8 @@ import {Link, useParams} from "react-router-dom";
 import ModalUpdateTeam from './ModalUpdateTeam.jsx'
 import { compareAsc, format } from 'date-fns';
 import LogoArchive from "./../images/Vector.png";
+import ModalAddReviewTeam from './ModalAddReviewTeam';
+import { reviewService } from "../service/review.service";
 
 const TeamDetails = () => {
   let { uuid } = useParams();
@@ -11,29 +13,32 @@ const TeamDetails = () => {
 
   const [team, setTeam] = useState(null);
     const [showModalUpdateTeam, setShowModalUpdateTeam] = useState(false);
+    const [showModalAddReviewTeam, setShowModalAddReviewTeam] = useState(false);
     const [update, setUpdate]= useState(false);
 
   
  const confirm = () => {
 
   setShowModalUpdateTeam(false);
+  setShowModalAddReviewTeam(false);
   setUpdate(!update)
 }
 
 const onClose = () => {
   setShowModalUpdateTeam(false);
+  setShowModalAddReviewTeam(false);
 }
 
   useEffect(() => { 
     teamService
       .getTeamByUuid(uuid)
-      .then((res) => {
+      .then(res => {
         console.log(res.data);
         setTeam(res.data);
 
       })
-      .catch((err) => console.log(err));
-  }, [update]);
+      .catch(err => console.log(err))
+    }, [update]);
 
   if (!team) {
     return <div>Chargement...</div>;
@@ -117,7 +122,7 @@ const onClose = () => {
                  />
                     </div>  
                 </div>
-          <div className="mx-96 my-10">
+          <div className="mx-10 my-10">
             <div className="overflow-x-auto">
                 <div className="p-3 bg-blue-500 text-center border border-blue-500 rounded-t-2xl">
                     <h2 className="font-mono not-italic font-bold text-2xl leading-9 text-white">Commentaires Review</h2>
@@ -144,9 +149,20 @@ const onClose = () => {
                 </table>
                 <div className="p-7 grid place-items-end">
                     <button
-                        className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end">
+                        className="border-2 border-blue-500 rounded-full p-1 px-2 flex items-end"
+                        onClick={() => {setShowModalAddReviewTeam(true)}}>
                         Ajouter un commentaire
                     </button>
+                </div>
+
+                <div>
+                  <div>
+                    <ModalAddReviewTeam isOpen={showModalAddReviewTeam}
+                    uuidTeam={team.uuid}
+                   confirm={confirm}
+                   onClose={onClose}
+                    />
+                  </div>
                 </div>
             </div>
           </div>

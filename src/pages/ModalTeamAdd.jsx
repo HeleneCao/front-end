@@ -11,7 +11,6 @@ const ModalTeamAdd = ({ isOpen, onClose, confirm }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
 
-
   const handleAddTeam = (values) => {
     console.log(values);
 
