@@ -4,7 +4,7 @@ import {Link, useParams} from "react-router-dom";
 import ModalUpdateTeam from './ModalUpdateTeam.jsx'
 import { compareAsc, format } from 'date-fns';
 import LogoArchive from "./../images/Vector.png";
-import ModalAddReviewTeam from './ModalAddReviewTeam';
+import ModalAddReviewTeam from './ModalAddReviewTeam.jsx';
 import { reviewService } from "../service/review.service";
 
 const TeamDetails = () => {
@@ -107,7 +107,7 @@ if (!team) {
           <td className="px-6 py-4 whitespace-nowrap">{team.name}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.skills.map((skill) => skill.label).join(" - ")}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.interns.length}</td>
-          <td className="px-6 py-4 whitespace-nowrap">{dateFr}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{team.creationDate}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.urlRepository}</td>
           <td className="px-6 py-4 whitespace-nowrap">{team.urlBacklog}</td>
         </tr>

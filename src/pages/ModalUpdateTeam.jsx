@@ -40,7 +40,6 @@ const ModalUpdateTeam = ({
     apiBackEnd
     .put(`/api/team/update/${uuid}`, teamDto)
     .then((response) => {
-
       confirm();
     })
     .catch((error) => {
@@ -74,7 +73,7 @@ const ModalUpdateTeam = ({
       {isOpen ? (
         <>
         <Formik
-          initialValues={{name: nomTeam, skills: skillsTeam.map((s) => {return { label : s.label , value :s.label }}),urlBacklog: backlog, urlRepository: repo }}
+          initialValues={{name: nomTeam, skills: skillsTeam.map((s) => {return { label : s.label , value :s.label }}),urlBacklog: backlog, urlRepository: repo, creationDate : dateCreation }}
           validationSchema={updateTeamValidationSchema}
           onSubmit={handleUpdateTeam}
           >
