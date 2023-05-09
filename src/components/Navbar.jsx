@@ -12,15 +12,15 @@ import LogoLogin from "./../images/Login.png";
 function Navbar() {
   return (
     <div>
-    <nav className="bg-white py-4 shadow-xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+    <nav className="bg-white py-4 shadow-xl flex justify-between" >
+
         
-        <div className="flex items-center">
+        <div>
           <Link to="/">
             <img
               src={LogoInsy2s}
               alt="Logo Insy2s"
-              className="h-10 w-auto mr-6"
+              className="h-10 w-auto ml-3"
             />
           </Link>
           </div>
@@ -30,11 +30,11 @@ function Navbar() {
         <img
           src={LogoIncubateur}
           alt="Logo Incubateur"
-          className="h6 w-auto mr-3"
+          className="h6 w-auto"
         />
           <Link
             to="/incubateur"
-            className="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium"
+            className="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium mr-4"
           >
             INCUBATEUR
           </Link>
@@ -42,11 +42,11 @@ function Navbar() {
           <img
           src={LogoDashboard}
           alt="Logo Incubateur"
-          className="h-6 w-auto mr-3"
+          className="h-6 w-auto"
         />
           <Link
             to="/dashboard"
-            className="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium"
+            className="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium mr-4"
           >
             DASHBOARD
           </Link>
@@ -54,11 +54,11 @@ function Navbar() {
           <img
           src={LogoPlanning}
           alt="Logo Planning"
-          className="h-6 w-auto mr-3"
+          className="h-6 w-auto"
         />
           <Link
             to="/planning"
-            className="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium"
+            className="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium mr-4"
           >
             PLANNING
           </Link>
@@ -67,7 +67,7 @@ function Navbar() {
          
         </div>
         
-        <div className="flex items-center">
+        <div className>
           <Link to="/login">
             <img
               src={LogoLogin}
@@ -76,7 +76,6 @@ function Navbar() {
             />
           </Link>
         </div>
-      </div>
     </nav>
     <div><MenuGestion/></div>
    </div>

@@ -34,7 +34,7 @@ const onClose = () => {
   useEffect(() => {
     internService
     .getInternByUuid(uuid)
-    .then((res) => {
+    .then(res => {
       console.log(res.data);
       setIntern(res.data);
       setDateFr(new Date(res.data.creationDate).toLocaleString('en-GB', { timeZone: 'UTC' }).slice(0, 10))
