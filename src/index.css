@@ -1,4 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+#imageLogin {
+    background-image: url("./images/imageLogin.jpg");
+    background-size: cover;
+}
 

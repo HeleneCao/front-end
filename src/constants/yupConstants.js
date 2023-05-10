@@ -1,5 +1,9 @@
 import * as Yup from "yup";
 
+export const loginValidationSchema = Yup.object().shape({
+  email: Yup.string().required("Identifiant obligatoire"),
+  password: Yup.string().required("Mot de passe obligatoire")
+  });
 
 export const teamValidationSchema = Yup.object().shape({
     name: Yup.string().required("Le nom est requis"),

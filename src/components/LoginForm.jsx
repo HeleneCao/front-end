@@ -1,17 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import {Formik, Form, Field, ErrorMessage} from 'formik';
-import * as Yup from 'yup';
+import {loginValidationSchema} from "../constants/yupConstants";
 import axios from 'axios';
 import {getToken, setToken} from "../service/tokenServices.js";
 import apiBackEnd from "../service/api.Backend.js";
+import LogoInsy2s from "./../images/logoInsy2s.gif";
 
-const validationSchema = Yup.object().shape({
-    email: Yup.string()
-        .email('Adresse e-mail invalide')
-        .required('L’adresse e-mail est requise'),
-    password: Yup.string()
-        .required('Le mot de passe est requis'),
-});
+// const validationSchema = Yup.object().shape({
+//     email: Yup.string()
+//         .email('Adresse e-mail invalide')
+//         .required('L’adresse e-mail est requise'),
+//     password: Yup.string()
+//         .required('Le mot de passe est requis'),
+// });
 
 const LoginForm = () => {
 
@@ -38,13 +39,21 @@ const LoginForm = () => {
             <div className="max-w-md w-full space-y-8">
                 <Formik
                     initialValues={{email: '', password: ''}}
-                    validationSchema={validationSchema}
+                    validationSchema={loginValidationSchema}
                     onSubmit={handleSubmit}
                 >
                     {({isSubmitting}) => (
                         <Form className="mt-8 space-y-6">
-                            <div className="rounded-md shadow-sm -space-y-px">
-                                <div className="relative mb-4">
+                                <div className="grid grid-cols-1 place-items-center">
+                          <img  src={LogoInsy2s} />
+                          </div>
+                          <div className="bg-white py-9 p-6 rounded-lg shadow-lg rounded-t-2xl">
+                            <div className="p-3 bg-blue-500 text-center border border-blue-500 rounded-t-2xl">
+                              <h2 className="font-mono not-italic font-bold text-2xl leading-9 text-white">
+                                Login Gestion Incubateur
+                              </h2>
+                            </div>
+                                <div className="relative mb-4 mt-4">
                                     <label htmlFor="email" className="sr-only">
                                         Adresse e-mail
                                     </label>
@@ -77,8 +86,7 @@ const LoginForm = () => {
                                         {msg => <div className="text-red-600 text-sm">{msg}</div>}
                                     </ErrorMessage>
                                 </div>
-                            </div>
-                            <div>
+                           
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
