@@ -1,46 +1,32 @@
+
 import jwt_decode from 'jwt-decode';
 
 const TOKEN_NAME = 'token';
-
 /**
  * To save the JWT token using for the back end requests
  * Save in the local storage
- *
  * @param {string} token: to save
  */
 export function setToken(token) {
     localStorage.setItem(TOKEN_NAME, token);
 }
-
 /**
  * To get the JWT token back-kend saved in the localstorage
- *
  * @return {string} token
  */
-export function getToken() {
-    return localStorage.getItem(TOKEN_NAME);
-}
-
+export function getToken() {return localStorage.getItem(TOKEN_NAME);}
 /**
  * Delete the token from the localstorage
  */
-export function removeToken() {
-    localStorage.removeItem(TOKEN_NAME);
-}
-
+export function removeToken() { localStorage.removeItem(TOKEN_NAME);}
 /**
  * Get the payload of the JWT Token (with experition date, login and roles)
- *
  * @return {object} payload of the token
  */
-export function getPayloadToken(token) {
-    return jwt_decode(token);
-}
-
+export function getPayloadToken(token) {return jwt_decode(token);}
 /**
  * To check if the current user is authenticated
  * Check the token, and it's validity
- *
  * @return {boolean} true if user is authenticated
  */
 export function isTokenValid(token) {
