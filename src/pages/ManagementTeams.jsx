@@ -42,11 +42,18 @@ const ManagementTeams = () => {
 
  
     return (
+
+        
+
+<div> <div className=''><h2>Gestion des teams : </h2></div>
         <div className="p-28">
             <div className="overflow-x-auto">
                 <div className="p-3 bg-blue-500 text-center border border-blue-500 rounded-t-2xl">
                     <h2 className="font-mono not-italic font-bold text-2xl leading-9 text-white">Liste des Teams</h2>
                 </div>
+
+                
+
                 <table className="w-full border-slate-300">
                     <thead className="text-left border border-t-gray-300">
                     <tr>
@@ -103,6 +110,8 @@ const ManagementTeams = () => {
                     </div>  
                 </div>
             </div>
+        </div>
+
         </div>
         
     );
